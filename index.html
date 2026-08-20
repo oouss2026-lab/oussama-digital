@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Oussama Digital</title>
+  <title>Oussama Digital | حلول رقمية احترافية</title>
+
+  <meta name="description" content="Oussama Digital - تصميم وتطوير مواقع وحلول رقمية عصرية واحترافية.">
+  <meta name="theme-color" content="#071114">
 
   <style>
     * {
@@ -14,249 +17,437 @@
       scroll-behavior: smooth;
     }
 
-    body {
-      font-family: Arial, Tahoma, sans-serif;
-      background: #0b0f14;
-      color: #ffffff;
-      line-height: 1.7;
+    :root {
+      --bg: #05090b;
+      --bg2: #081316;
+      --card: rgba(14, 28, 32, 0.75);
+      --primary: #00d5d5;
+      --primary-dark: #087f86;
+      --gold: #ffd7ad;
+      --text: #ffffff;
+      --muted: #aab7ba;
+      --border: rgba(255,255,255,0.1);
     }
+
+    body {
+      font-family: Arial, "Tahoma", sans-serif;
+      background:
+        radial-gradient(circle at 80% 10%, rgba(0,213,213,0.12), transparent 30%),
+        radial-gradient(circle at 10% 50%, rgba(0,213,213,0.06), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    /* ================= HEADER ================= */
 
     header {
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      width: 100%;
       z-index: 1000;
-      background: rgba(11, 15, 20, 0.95);
-      border-bottom: 1px solid #26303a;
-      backdrop-filter: blur(10px);
+      background: rgba(5, 9, 11, 0.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
     }
 
-    .navbar {
-      max-width: 1150px;
-      margin: auto;
-      padding: 18px 25px;
+    .nav {
+      height: 78px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
     }
 
     .logo {
       font-size: 25px;
-      font-weight: bold;
-      color: #00d9ff;
+      font-weight: 900;
+      color: var(--primary);
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #d9e2e3;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
     }
 
     .menu-btn {
       display: none;
       background: none;
-      border: none;
+      border: 0;
       color: white;
       font-size: 30px;
       cursor: pointer;
     }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 28px;
-    }
-
-    nav a {
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 16px;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: #00d9ff;
-    }
+    /* ================= HERO ================= */
 
     .hero {
-      min-height: 90vh;
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
-      text-align: center;
-      padding: 60px 20px;
-      background:
-        radial-gradient(circle at top, #123344 0%, #0b0f14 55%);
+      position: relative;
+      padding-top: 100px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      background: var(--primary);
+      opacity: 0.08;
+      filter: blur(100px);
+      border-radius: 50%;
+      top: 20%;
+      right: 10%;
     }
 
     .hero-content {
       max-width: 850px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid rgba(0,213,213,0.3);
+      background: rgba(0,213,213,0.06);
+      color: var(--primary);
+      border-radius: 50px;
+      margin-bottom: 22px;
+      font-size: 14px;
     }
 
     .hero h1 {
-      font-size: clamp(42px, 8vw, 82px);
-      margin-bottom: 15px;
-      color: #00d9ff;
+      font-size: clamp(45px, 8vw, 88px);
+      line-height: 1.05;
+      margin-bottom: 25px;
+      letter-spacing: -4px;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
     }
 
     .hero h2 {
+      color: var(--gold);
       font-size: clamp(22px, 4vw, 38px);
       margin-bottom: 20px;
     }
 
     .hero p {
-      color: #b8c4cf;
-      font-size: 19px;
       max-width: 700px;
-      margin: auto;
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 35px;
     }
 
     .buttons {
-      margin-top: 35px;
       display: flex;
-      justify-content: center;
       gap: 15px;
       flex-wrap: wrap;
     }
 
     .btn {
-      display: inline-block;
-      padding: 13px 25px;
-      border-radius: 10px;
-      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 14px 27px;
+      border-radius: 12px;
       font-weight: bold;
+      border: 1px solid var(--primary);
       transition: 0.3s;
+      cursor: pointer;
     }
 
     .btn-primary {
-      background: #00d9ff;
-      color: #061018;
+      background: var(--primary);
+      color: #001719;
     }
 
     .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 217, 255, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0,213,213,0.2);
     }
 
-    .btn-secondary {
-      border: 1px solid #3b4b59;
-      color: white;
+    .btn-outline {
+      color: var(--gold);
+      border-color: rgba(255,215,173,0.4);
     }
 
-    .btn-secondary:hover {
-      border-color: #00d9ff;
-      color: #00d9ff;
+    .btn-outline:hover {
+      background: rgba(255,215,173,0.08);
+      transform: translateY(-4px);
     }
+
+    /* ================= SECTIONS ================= */
 
     section {
-      max-width: 1150px;
-      margin: auto;
-      padding: 85px 25px;
+      padding: 100px 0;
     }
 
     .section-title {
       text-align: center;
-      font-size: 38px;
-      margin-bottom: 50px;
-      color: #00d9ff;
+      margin-bottom: 55px;
     }
 
-    .about {
-      text-align: center;
-      max-width: 850px;
+    .section-title small {
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .section-title h2 {
+      font-size: clamp(32px, 5vw, 52px);
+      margin: 8px 0 10px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      max-width: 650px;
       margin: auto;
-      color: #c5d0d9;
-      font-size: 18px;
     }
 
-    .cards {
+    /* ================= SERVICES ================= */
+
+    .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
+      gap: 20px;
     }
 
     .card {
-      background: #111820;
-      border: 1px solid #26333e;
-      border-radius: 16px;
-      padding: 30px 25px;
-      text-align: center;
-      transition: 0.3s;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 30px;
+      transition: 0.35s;
+      backdrop-filter: blur(10px);
     }
 
     .card:hover {
-      transform: translateY(-7px);
-      border-color: #00d9ff;
-      box-shadow: 0 10px 30px rgba(0, 217, 255, 0.08);
+      transform: translateY(-8px);
+      border-color: rgba(0,213,213,0.4);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
     }
 
-    .card-icon {
-      font-size: 45px;
-      margin-bottom: 15px;
+    .icon {
+      width: 55px;
+      height: 55px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: rgba(0,213,213,0.1);
+      color: var(--primary);
+      font-size: 25px;
+      margin-bottom: 20px;
     }
 
     .card h3 {
-      color: #00d9ff;
+      font-size: 22px;
       margin-bottom: 12px;
-      font-size: 23px;
     }
 
     .card p {
-      color: #aebbc5;
+      color: var(--muted);
+      font-size: 15px;
     }
 
-    .skills {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
+    /* ================= ABOUT ================= */
+
+    .about {
+      background: linear-gradient(
+        180deg,
+        transparent,
+        rgba(0,213,213,0.025),
+        transparent
+      );
     }
 
-    .skill {
-      background: #111820;
-      border: 1px solid #30404d;
-      padding: 12px 22px;
-      border-radius: 30px;
-      color: #dce7ef;
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
     }
 
-    .contact-box {
-      max-width: 700px;
-      margin: auto;
+    .about-box {
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 25px;
+      padding: 35px;
+    }
+
+    .about-box h3 {
+      color: var(--gold);
+      font-size: 28px;
+      margin-bottom: 18px;
+    }
+
+    .about-box p {
+      color: var(--muted);
+      margin-bottom: 15px;
+    }
+
+    .features {
+      list-style: none;
+    }
+
+    .features li {
+      margin: 15px 0;
+      color: #dce7e8;
+    }
+
+    .features li::before {
+      content: "✓";
+      color: var(--primary);
+      font-weight: bold;
+      margin-left: 10px;
+    }
+
+    /* ================= PROJECTS ================= */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .project {
+      position: relative;
+      overflow: hidden;
+      min-height: 240px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(135deg, rgba(0,213,213,0.13), rgba(255,215,173,0.03)),
+        var(--bg2);
+      padding: 30px;
+    }
+
+    .project-number {
+      font-size: 13px;
+      color: var(--primary);
+      margin-bottom: 50px;
+    }
+
+    .project h3 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .project p {
+      color: var(--muted);
+    }
+
+    /* ================= CTA ================= */
+
+    .cta {
       text-align: center;
-      background: #111820;
-      border: 1px solid #26333e;
-      border-radius: 18px;
-      padding: 40px 25px;
     }
 
-    .contact-box p {
-      color: #b8c4cf;
-      margin-bottom: 25px;
+    .cta-box {
+      padding: 70px 25px;
+      border-radius: 30px;
+      border: 1px solid rgba(0,213,213,0.2);
+      background:
+        radial-gradient(circle at center, rgba(0,213,213,0.12), transparent 60%),
+        var(--card);
     }
+
+    .cta-box h2 {
+      font-size: clamp(32px, 6vw, 55px);
+      margin-bottom: 15px;
+    }
+
+    .cta-box p {
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto 30px;
+    }
+
+    /* ================= CONTACT ================= */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    .contact-card {
+      padding: 30px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    .contact-card h3 {
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+    }
+
+    /* ================= FOOTER ================= */
 
     footer {
-      border-top: 1px solid #26303a;
+      border-top: 1px solid var(--border);
+      padding: 35px 0;
       text-align: center;
-      padding: 30px 20px;
-      color: #8796a3;
-      background: #080c10;
+      color: var(--muted);
     }
 
-    .social {
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
+    footer strong {
+      color: var(--primary);
     }
 
-    .social a {
-      text-decoration: none;
-      color: white;
-      border: 1px solid #33414d;
-      padding: 9px 18px;
-      border-radius: 8px;
-      transition: 0.3s;
+    /* ================= ANIMATION ================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      animation: reveal 0.9s forwards;
     }
 
-    .social a:hover {
-      color: #00d9ff;
-      border-color: #00d9ff;
+    @keyframes reveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
+    /* ================= MOBILE ================= */
 
     @media (max-width: 800px) {
 
@@ -264,45 +455,62 @@
         display: block;
       }
 
-      nav {
-        display: none;
+      .nav-links {
         position: absolute;
-        top: 70px;
-        right: 0;
-        width: 100%;
-        background: #0b0f14;
-        border-bottom: 1px solid #26303a;
-      }
-
-      nav.active {
-        display: block;
-      }
-
-      nav ul {
+        top: 78px;
+        right: 4%;
+        left: 4%;
+        display: none;
         flex-direction: column;
-        padding: 20px;
-        gap: 15px;
+        gap: 0;
+        padding: 15px;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        background: rgba(5,9,11,0.97);
       }
 
-      nav a {
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li {
+        width: 100%;
+      }
+
+      .nav-links a {
         display: block;
-        padding: 8px;
-      }
-
-      .cards {
-        grid-template-columns: 1fr;
+        padding: 13px;
       }
 
       .hero {
-        min-height: 80vh;
+        min-height: 90vh;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .services-grid,
+      .projects-grid,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
       }
 
       section {
-        padding: 65px 20px;
+        padding: 75px 0;
       }
 
-      .section-title {
-        font-size: 32px;
+      .buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
       }
     }
   </style>
@@ -310,267 +518,354 @@
 
 <body>
 
-  <!-- HEADER -->
+  <!-- ================= HEADER ================= -->
+
   <header>
-    <div class="navbar">
+    <div class="container nav">
 
-      <div class="logo">
-        Oussama Digital
-      </div>
+      <a href="#home" class="logo">
+        Oussama <span>Digital</span>
+      </a>
 
-      <button class="menu-btn" onclick="toggleMenu()">
+      <button class="menu-btn" onclick="toggleMenu()" aria-label="فتح القائمة">
         ☰
       </button>
 
-      <nav id="navLinks">
-        <ul>
-          <li><a href="#home">الرئيسية</a></li>
-          <li><a href="#about">من أنا</a></li>
-          <li><a href="#services">الخدمات</a></li>
-          <li><a href="#skills">المهارات</a></li>
-          <li><a href="#contact">تواصل معي</a></li>
-        </ul>
-      </nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">الرئيسية</a></li>
+        <li><a href="#services">الخدمات</a></li>
+        <li><a href="#about">من أنا</a></li>
+        <li><a href="#projects">أعمالي</a></li>
+        <li><a href="#contact">تواصل معي</a></li>
+      </ul>
 
     </div>
   </header>
 
 
-  <!-- HERO -->
-  <section class="hero" id="home">
+  <!-- ================= HERO ================= -->
 
-    <div class="hero-content">
+  <main>
 
-      <h1>Oussama Digital</h1>
+    <section class="hero" id="home">
 
-      <h2>مرحباً بك في موقعي الرقمي</h2>
+      <div class="container">
 
-      <p>
-        أقدّم حلولاً رقمية حديثة وبسيطة، مع التركيز على
-        تصميم المواقع، البرمجة وتطوير المشاريع الرقمية.
-      </p>
+        <div class="hero-content reveal">
 
-      <div class="buttons">
+          <div class="badge">
+            ✦ حلول رقمية عصرية
+          </div>
 
-        <a href="#services" class="btn btn-primary">
-          اكتشف خدماتي
-        </a>
+          <h1>
+            Oussama <span>Digital</span>
+          </h1>
 
-        <a href="#contact" class="btn btn-secondary">
-          تواصل معي
-        </a>
+          <h2>
+            نحول أفكارك إلى حضور رقمي احترافي.
+          </h2>
 
-      </div>
+          <p>
+            أساعدك على بناء مواقع إلكترونية حديثة وسريعة ومتجاوبة
+            مع الهاتف، مع تصميم أنيق وتجربة استخدام بسيطة واحترافية.
+          </p>
 
-    </div>
+          <div class="buttons">
+            <a href="#services" class="btn btn-primary">
+              اكتشف خدماتي
+            </a>
 
-  </section>
+            <a href="#contact" class="btn btn-outline">
+              تواصل معي
+            </a>
+          </div>
 
-
-  <!-- ABOUT -->
-  <section id="about">
-
-    <h2 class="section-title">
-      من أنا
-    </h2>
-
-    <div class="about">
-
-      <p>
-        أنا أسامة، مهتم بالمجال الرقمي وتطوير المشاريع الحديثة.
-        أعمل على إنشاء حلول رقمية عملية، واضحة وسهلة الاستخدام.
-      </p>
-
-      <br>
-
-      <p>
-        هذا الموقع هو مساحة رقمية لعرض مشاريعي وخدماتي
-        وتطوير أفكاري المستقبلية.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- SERVICES -->
-  <section id="services">
-
-    <h2 class="section-title">
-      الخدمات
-    </h2>
-
-    <div class="cards">
-
-      <div class="card">
-
-        <div class="card-icon">
-          🌐
         </div>
 
-        <h3>
-          تصميم المواقع
-        </h3>
-
-        <p>
-          تصميم مواقع حديثة ومتجاوبة مع الهاتف والكمبيوتر.
-        </p>
-
       </div>
 
+    </section>
 
-      <div class="card">
 
-        <div class="card-icon">
-          💻
+    <!-- ================= SERVICES ================= -->
+
+    <section id="services">
+
+      <div class="container">
+
+        <div class="section-title">
+          <small>ماذا أقدم؟</small>
+          <h2>خدمات رقمية</h2>
+          <p>
+            حلول عملية تساعد مشروعك على الظهور بشكل أفضل على الإنترنت.
+          </p>
         </div>
 
-        <h3>
-          تطوير الويب
-        </h3>
+        <div class="services-grid">
 
-        <p>
-          تطوير صفحات ومشاريع ويب باستخدام HTML وCSS وJavaScript.
-        </p>
+          <div class="card">
+            <div class="icon">⌘</div>
+            <h3>تصميم المواقع</h3>
+            <p>
+              تصميم مواقع عصرية وأنيقة تعمل بشكل ممتاز على الهاتف
+              والكمبيوتر وجميع أحجام الشاشات.
+            </p>
+          </div>
 
-      </div>
+          <div class="card">
+            <div class="icon">{"}"}</div>
+            <h3>تطوير الويب</h3>
+            <p>
+              تطوير صفحات ومواقع سريعة ومنظمة باستخدام تقنيات الويب
+              الحديثة.
+            </p>
+          </div>
 
+          <div class="card">
+            <div class="icon">⚡</div>
+            <h3>تحسين الأداء</h3>
+            <p>
+              تحسين سرعة الموقع وتجربة المستخدم وجعل التصفح أكثر
+              سلاسة وراحة.
+            </p>
+          </div>
 
-      <div class="card">
+          <div class="card">
+            <div class="icon">◈</div>
+            <h3>هوية رقمية</h3>
+            <p>
+              بناء حضور رقمي متناسق يعكس احترافية مشروعك ويزيد من
+              ثقة الزوار.
+            </p>
+          </div>
 
-        <div class="card-icon">
-          🚀
+          <div class="card">
+            <div class="icon">⌁</div>
+            <h3>صفحات الهبوط</h3>
+            <p>
+              صفحات Landing Page مصممة لجذب الانتباه وتحويل الزائر
+              إلى عميل.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon">✦</div>
+            <h3>تطوير مستمر</h3>
+            <p>
+              إمكانية تطوير الموقع مستقبلًا وإضافة خصائص جديدة حسب
+              احتياجات المشروع.
+            </p>
+          </div>
+
         </div>
 
-        <h3>
-          مشاريع رقمية
-        </h3>
+      </div>
 
-        <p>
-          إنشاء أفكار ومشاريع رقمية قابلة للتطوير مستقبلاً.
-        </p>
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section class="about" id="about">
+
+      <div class="container">
+
+        <div class="section-title">
+          <small>تعرف عليّ</small>
+          <h2>من أنا؟</h2>
+        </div>
+
+        <div class="about-grid">
+
+          <div class="about-box">
+            <h3>Oussama Digital</h3>
+
+            <p>
+              مشروع رقمي يركز على تقديم حلول ويب حديثة وبسيطة
+              واحترافية للأفراد والمشاريع.
+            </p>
+
+            <p>
+              الهدف هو تحويل الفكرة إلى تجربة رقمية واضحة وسريعة
+              وجذابة.
+            </p>
+          </div>
+
+          <div class="about-box">
+
+            <ul class="features">
+              <li>تصميم حديث ومتجاوب</li>
+              <li>تجربة استخدام بسيطة</li>
+              <li>سرعة وأداء جيد</li>
+              <li>تنظيم احترافي للمحتوى</li>
+              <li>قابلية للتطوير مستقبلًا</li>
+            </ul>
+
+          </div>
+
+        </div>
 
       </div>
 
-    </div>
-
-  </section>
+    </section>
 
 
-  <!-- SKILLS -->
-  <section id="skills">
+    <!-- ================= PROJECTS ================= -->
 
-    <h2 class="section-title">
-      المهارات والتقنيات
-    </h2>
+    <section id="projects">
 
-    <div class="skills">
+      <div class="container">
 
-      <div class="skill">
-        HTML
-      </div>
+        <div class="section-title">
+          <small>أعمالي</small>
+          <h2>مشاريع رقمية</h2>
+          <p>
+            نماذج من أنواع المشاريع التي يمكن تطويرها وتصميمها.
+          </p>
+        </div>
 
-      <div class="skill">
-        CSS
-      </div>
+        <div class="projects-grid">
 
-      <div class="skill">
-        JavaScript
-      </div>
+          <div class="project">
+            <div class="project-number">01 / WEB DESIGN</div>
+            <h3>موقع أعمال</h3>
+            <p>
+              موقع احترافي لعرض الخدمات والأعمال والمعلومات.
+            </p>
+          </div>
 
-      <div class="skill">
-        Responsive Design
-      </div>
+          <div class="project">
+            <div class="project-number">02 / BUSINESS</div>
+            <h3>موقع مشروع</h3>
+            <p>
+              حضور رقمي كامل لمشروع أو مؤسسة مع عرض الخدمات.
+            </p>
+          </div>
 
-      <div class="skill">
-        GitHub
-      </div>
+          <div class="project">
+            <div class="project-number">03 / LANDING PAGE</div>
+            <h3>صفحة هبوط</h3>
+            <p>
+              صفحة مركزة على تقديم منتج أو خدمة بطريقة جذابة.
+            </p>
+          </div>
 
-      <div class="skill">
-        Web Development
-      </div>
+          <div class="project">
+            <div class="project-number">04 / DIGITAL</div>
+            <h3>حل رقمي</h3>
+            <p>
+              واجهة رقمية قابلة للتطوير حسب احتياجات المشروع.
+            </p>
+          </div>
 
-    </div>
-
-  </section>
-
-
-  <!-- CONTACT -->
-  <section id="contact">
-
-    <h2 class="section-title">
-      تواصل معي
-    </h2>
-
-    <div class="contact-box">
-
-      <p>
-        إذا أردت التواصل معي أو الاستفسار عن أحد المشاريع،
-        يمكنك التواصل عبر وسائل التواصل الخاصة بي.
-      </p>
-
-      <div class="social">
-
-        <a href="#" onclick="showMessage()">
-          WhatsApp
-        </a>
-
-        <a href="#" onclick="showMessage()">
-          Facebook
-        </a>
-
-        <a href="#" onclick="showMessage()">
-          Instagram
-        </a>
+        </div>
 
       </div>
 
-    </div>
-
-  </section>
+    </section>
 
 
-  <!-- FOOTER -->
+    <!-- ================= CTA ================= -->
+
+    <section class="cta">
+
+      <div class="container">
+
+        <div class="cta-box">
+
+          <h2>عندك فكرة؟ خلينا نبدأ.</h2>
+
+          <p>
+            سواء كنت تحتاج موقعًا شخصيًا، موقع مشروع، صفحة هبوط
+            أو واجهة رقمية، يمكننا تحويل فكرتك إلى شيء حقيقي.
+          </p>
+
+          <a href="#contact" class="btn btn-primary">
+            ابدأ مشروعك الآن
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= CONTACT ================= -->
+
+    <section id="contact">
+
+      <div class="container">
+
+        <div class="section-title">
+          <small>تواصل</small>
+          <h2>تواصل معي</h2>
+          <p>
+            أخبرني بفكرتك وسنرى كيف يمكن تحويلها إلى مشروع رقمي.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+
+          <div class="contact-card">
+            <h3>💬 مشروع جديد</h3>
+            <p>
+              لديك فكرة لموقع أو مشروع رقمي؟ أرسل التفاصيل
+              وسنبدأ من الفكرة.
+            </p>
+          </div>
+
+          <div class="contact-card">
+            <h3>🌐 Oussama Digital</h3>
+            <p>
+              تصميم وتطوير حلول رقمية حديثة، بسيطة واحترافية.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================= FOOTER ================= -->
+
   <footer>
 
-    <p>
-      © 2026 Oussama Digital — جميع الحقوق محفوظة
-    </p>
+    <div class="container">
+
+      <p>
+        © <span id="year"></span>
+        <strong>Oussama Digital</strong>
+        — جميع الحقوق محفوظة.
+      </p>
+
+    </div>
 
   </footer>
 
 
-  <!-- JAVASCRIPT -->
+  <!-- ================= JAVASCRIPT ================= -->
+
   <script>
 
     function toggleMenu() {
-
-      const menu = document.getElementById("navLinks");
-
-      menu.classList.toggle("active");
-
+      document.getElementById("navLinks").classList.toggle("active");
     }
 
-
-    document.querySelectorAll(".nav-links a").forEach(link => {
-
+    document.querySelectorAll(".nav-links a").forEach(function(link) {
       link.addEventListener("click", function() {
-
-        document.getElementById("navLinks")
-          .classList.remove("active");
-
+        document.getElementById("navLinks").classList.remove("active");
       });
-
     });
 
-
-    function showMessage() {
-
-      alert("يمكنك إضافة رابط التواصل الخاص بك هنا.");
-
-    }
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
 
   </script>
 
 </body>
-</html>
+</html> 

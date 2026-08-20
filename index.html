@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Oussama Digital</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      background: #0b0f14;
+      color: #ffffff;
+      line-height: 1.7;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11, 15, 20, 0.95);
+      border-bottom: 1px solid #26303a;
+      backdrop-filter: blur(10px);
+    }
+
+    .navbar {
+      max-width: 1150px;
+      margin: auto;
+      padding: 18px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+      color: #00d9ff;
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00d9ff;
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px;
+      background:
+        radial-gradient(circle at top, #123344 0%, #0b0f14 55%);
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 8vw, 82px);
+      margin-bottom: 15px;
+      color: #00d9ff;
+    }
+
+    .hero h2 {
+      font-size: clamp(22px, 4vw, 38px);
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      color: #b8c4cf;
+      font-size: 19px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .buttons {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 25px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: #00d9ff;
+      color: #061018;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 217, 255, 0.3);
+    }
+
+    .btn-secondary {
+      border: 1px solid #3b4b59;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      border-color: #00d9ff;
+      color: #00d9ff;
+    }
+
+    section {
+      max-width: 1150px;
+      margin: auto;
+      padding: 85px 25px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 38px;
+      margin-bottom: 50px;
+      color: #00d9ff;
+    }
+
+    .about {
+      text-align: center;
+      max-width: 850px;
+      margin: auto;
+      color: #c5d0d9;
+      font-size: 18px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: #111820;
+      border: 1px solid #26333e;
+      border-radius: 16px;
+      padding: 30px 25px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: #00d9ff;
+      box-shadow: 0 10px 30px rgba(0, 217, 255, 0.08);
+    }
+
+    .card-icon {
+      font-size: 45px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      color: #00d9ff;
+      margin-bottom: 12px;
+      font-size: 23px;
+    }
+
+    .card p {
+      color: #aebbc5;
+    }
+
+    .skills {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .skill {
+      background: #111820;
+      border: 1px solid #30404d;
+      padding: 12px 22px;
+      border-radius: 30px;
+      color: #dce7ef;
+    }
+
+    .contact-box {
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+      background: #111820;
+      border: 1px solid #26333e;
+      border-radius: 18px;
+      padding: 40px 25px;
+    }
+
+    .contact-box p {
+      color: #b8c4cf;
+      margin-bottom: 25px;
+    }
+
+    footer {
+      border-top: 1px solid #26303a;
+      text-align: center;
+      padding: 30px 20px;
+      color: #8796a3;
+      background: #080c10;
+    }
+
+    .social {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .social a {
+      text-decoration: none;
+      color: white;
+      border: 1px solid #33414d;
+      padding: 9px 18px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .social a:hover {
+      color: #00d9ff;
+      border-color: #00d9ff;
+    }
+
+    @media (max-width: 800px) {
+
+      .menu-btn {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        background: #0b0f14;
+        border-bottom: 1px solid #26303a;
+      }
+
+      nav.active {
+        display: block;
+      }
+
+      nav ul {
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+      }
+
+      nav a {
+        display: block;
+        padding: 8px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 80vh;
+      }
+
+      section {
+        padding: 65px 20px;
+      }
+
+      .section-title {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="navbar">
+
+      <div class="logo">
+        Oussama Digital
+      </div>
+
+      <button class="menu-btn" onclick="toggleMenu()">
+        ☰
+      </button>
+
+      <nav id="navLinks">
+        <ul>
+          <li><a href="#home">الرئيسية</a></li>
+          <li><a href="#about">من أنا</a></li>
+          <li><a href="#services">الخدمات</a></li>
+          <li><a href="#skills">المهارات</a></li>
+          <li><a href="#contact">تواصل معي</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+
+      <h1>Oussama Digital</h1>
+
+      <h2>مرحباً بك في موقعي الرقمي</h2>
+
+      <p>
+        أقدّم حلولاً رقمية حديثة وبسيطة، مع التركيز على
+        تصميم المواقع، البرمجة وتطوير المشاريع الرقمية.
+      </p>
+
+      <div class="buttons">
+
+        <a href="#services" class="btn btn-primary">
+          اكتشف خدماتي
+        </a>
+
+        <a href="#contact" class="btn btn-secondary">
+          تواصل معي
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+  <section id="about">
+
+    <h2 class="section-title">
+      من أنا
+    </h2>
+
+    <div class="about">
+
+      <p>
+        أنا أسامة، مهتم بالمجال الرقمي وتطوير المشاريع الحديثة.
+        أعمل على إنشاء حلول رقمية عملية، واضحة وسهلة الاستخدام.
+      </p>
+
+      <br>
+
+      <p>
+        هذا الموقع هو مساحة رقمية لعرض مشاريعي وخدماتي
+        وتطوير أفكاري المستقبلية.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- SERVICES -->
+  <section id="services">
+
+    <h2 class="section-title">
+      الخدمات
+    </h2>
+
+    <div class="cards">
+
+      <div class="card">
+
+        <div class="card-icon">
+          🌐
+        </div>
+
+        <h3>
+          تصميم المواقع
+        </h3>
+
+        <p>
+          تصميم مواقع حديثة ومتجاوبة مع الهاتف والكمبيوتر.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-icon">
+          💻
+        </div>
+
+        <h3>
+          تطوير الويب
+        </h3>
+
+        <p>
+          تطوير صفحات ومشاريع ويب باستخدام HTML وCSS وJavaScript.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-icon">
+          🚀
+        </div>
+
+        <h3>
+          مشاريع رقمية
+        </h3>
+
+        <p>
+          إنشاء أفكار ومشاريع رقمية قابلة للتطوير مستقبلاً.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SKILLS -->
+  <section id="skills">
+
+    <h2 class="section-title">
+      المهارات والتقنيات
+    </h2>
+
+    <div class="skills">
+
+      <div class="skill">
+        HTML
+      </div>
+
+      <div class="skill">
+        CSS
+      </div>
+
+      <div class="skill">
+        JavaScript
+      </div>
+
+      <div class="skill">
+        Responsive Design
+      </div>
+
+      <div class="skill">
+        GitHub
+      </div>
+
+      <div class="skill">
+        Web Development
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+  <section id="contact">
+
+    <h2 class="section-title">
+      تواصل معي
+    </h2>
+
+    <div class="contact-box">
+
+      <p>
+        إذا أردت التواصل معي أو الاستفسار عن أحد المشاريع،
+        يمكنك التواصل عبر وسائل التواصل الخاصة بي.
+      </p>
+
+      <div class="social">
+
+        <a href="#" onclick="showMessage()">
+          WhatsApp
+        </a>
+
+        <a href="#" onclick="showMessage()">
+          Facebook
+        </a>
+
+        <a href="#" onclick="showMessage()">
+          Instagram
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <p>
+      © 2026 Oussama Digital — جميع الحقوق محفوظة
+    </p>
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+  <script>
+
+    function toggleMenu() {
+
+      const menu = document.getElementById("navLinks");
+
+      menu.classList.toggle("active");
+
+    }
+
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+
+      link.addEventListener("click", function() {
+
+        document.getElementById("navLinks")
+          .classList.remove("active");
+
+      });
+
+    });
+
+
+    function showMessage() {
+
+      alert("يمكنك إضافة رابط التواصل الخاص بك هنا.");
+
+    }
+
+  </script>
+
+</body>
+</html>

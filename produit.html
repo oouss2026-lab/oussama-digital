@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مشروعي | إدارة مشروعك بسهولة</title>
+<style>
+:root{--bg:#f5f6fa;--card:#fff;--ink:#171c26;--muted:#6d7685;--line:#e5e8ee;--accent:#5b4bdb;--dark:#191426;--ok:#13845c;--bad:#c53d32}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,Arial,sans-serif}
+header{background:var(--dark);color:white;padding:15px 18px;position:sticky;top:0;z-index:10}.head{max-width:1150px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-weight:900;font-size:23px}.brand span{display:block;font-size:11px;color:#c8c1db;font-weight:400;margin-top:3px}
+main{max-width:1150px;margin:20px auto;padding:0 15px}.hero{border-radius:20px;padding:24px;background:linear-gradient(135deg,#20152e,#5b4bdb);color:#fff;margin-bottom:16px}.hero h1{margin:0 0 6px;font-size:28px}.hero p{margin:0;color:#ebe8f8}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 5px 18px #1018280b}.label{color:var(--muted);font-size:12px}.value{font-size:23px;font-weight:900;margin-top:8px}.ok{color:var(--ok)}.bad{color:var(--bad)}
+.nav{display:flex;gap:7px;overflow:auto;margin:17px 0}.nav button{white-space:nowrap}.nav .active{background:var(--dark);color:white}
+button{border:0;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}.primary{background:var(--accent);color:#fff}.light{background:#fff;border:1px solid var(--line)}.danger{background:#fff0ef;color:var(--bad)}
+.panel{display:none}.panel.active{display:block}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:14px}.toolbar h2{margin:0;font-size:19px}
+form{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.field{display:flex;flex-direction:column;gap:5px}.full{grid-column:1/-1}label{font-size:12px;color:var(--muted)}input,select,textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;font:inherit;background:#fff}textarea{min-height:80px}.actions{grid-column:1/-1;display:flex;gap:8px}
+.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:650px}th,td{padding:11px 8px;border-bottom:1px solid var(--line);text-align:right}th{color:var(--muted);font-size:12px}.empty{text-align:center;color:var(--muted);padding:28px}
+.search{display:flex;gap:8px;margin-bottom:12px}.search input{flex:1}.low{color:var(--bad);font-weight:800}.pill{display:inline-block;padding:4px 8px;border-radius:999px;background:#eeeaff;color:#493bc0;font-size:11px}
+.modal{display:none;position:fixed;inset:0;background:#0008;z-index:30;padding:20px}.modal.show{display:flex;align-items:center;justify-content:center}.modalbox{background:white;max-width:560px;width:100%;border-radius:16px;padding:18px;max-height:90vh;overflow:auto}
+.invoice{background:white;padding:25px;border:1px solid #ddd}.invoice h2{margin-top:0}.invoice .row{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:8px 0}
+@media(max-width:800px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.cards{grid-template-columns:1fr 1fr}.hero h1{font-size:22px}form{grid-template-columns:1fr}.full{grid-column:auto}}
+@media print{body{background:white}header,.hero,.cards,.nav,.toolbar,.search,.no-print{display:none!important}.panel{display:block!important}.card{box-shadow:none;border:0}}
+</style>
+</head>
+<body>
+<header><div class="head"><div class="brand">مشروعي<span>إدارة المشاريع الصغيرة بالعربية</span></div><button class="light" onclick="backup()">نسخة احتياطية</button></div></header>
+<main>
+<section class="hero"><h1>مشروعك في يدك</h1><p>تابع البيع والمصاريف والديون والمخزون والزبائن من هاتفك، بدون تعقيد.</p></section>
+<section class="cards">
+<div class="card"><div class="label">مبيعات اليوم</div><div id="sToday" class="value ok">0 دج</div></div>
+<div class="card"><div class="label">مصاريف اليوم</div><div id="eToday" class="value bad">0 دج</div></div>
+<div class="card"><div class="label">الربح الإجمالي</div><div id="profit" class="value">0 دج</div></div>
+<div class="card"><div class="label">الديون المستحقة</div><div id="debt" class="value bad">0 دج</div></div>
+</section>
+<div class="nav">
+<button class="active" data-tab="home">الرئيسية</button><button data-tab="sales">المبيعات</button><button data-tab="expenses">المصاريف</button><button data-tab="debts">الديون</button><button data-tab="stock">المخزون</button><button data-tab="customers">الزبائن</button><button data-tab="reports">التقارير</button>
+</div>
+
+<section id="home" class="panel active"><div class="card"><div class="toolbar"><h2>آخر العمليات</h2><button class="primary" onclick="tab('sales')">+ بيع جديد</button></div><div id="recent"></div></div></section>
+
+<section id="sales" class="panel"><div class="card"><div class="toolbar"><h2>المبيعات</h2><button class="primary" onclick="openInvoice()">إنشاء فاتورة</button></div>
+<form id="saleForm"><div class="field"><label>المنتج / الخدمة</label><input id="saleName" required></div><div class="field"><label>المبلغ (دج)</label><input id="saleAmount" type="number" min="0" required></div><div class="field"><label>الزبون</label><input id="saleCustomer"></div><div class="field"><label>التاريخ</label><input id="saleDate" type="date" required></div><div class="actions"><button class="primary">حفظ البيع</button></div></form><hr><div class="search"><input id="saleSearch" placeholder="ابحث في المبيعات..." oninput="render()"></div><div id="salesTable"></div></div></section>
+
+<section id="expenses" class="panel"><div class="card"><div class="toolbar"><h2>المصاريف</h2></div>
+<form id="expenseForm"><div class="field"><label>وصف المصروف</label><input id="expenseName" required></div><div class="field"><label>المبلغ (دج)</label><input id="expenseAmount" type="number" min="0" required></div><div class="field"><label>التاريخ</label><input id="expenseDate" type="date" required></div><div class="field"><label>التصنيف</label><select id="expenseCat"><option>مشتريات</option><option>نقل</option><option>كراء</option><option>تسويق</option><option>أجور</option><option>أخرى</option></select></div><div class="actions"><button class="primary">حفظ المصروف</button></div></form><hr><div id="expensesTable"></div></div></section>
+
+<section id="debts" class="panel"><div class="card"><div class="toolbar"><h2>الديون</h2></div>
+<form id="debtForm"><div class="field"><label>اسم الزبون</label><input id="debtCustomer" required></div><div class="field"><label>المبلغ (دج)</label><input id="debtAmount" type="number" min="0" required></div><div class="field"><label>تاريخ الاستحقاق</label><input id="debtDate" type="date" required></div><div class="field"><label>ملاحظة</label><input id="debtNote"></div><div class="actions"><button class="primary">إضافة دين</button></div></form><hr><div id="debtsTable"></div></div></section>
+
+<section id="stock" class="panel"><div class="card"><div class="toolbar"><h2>المخزون</h2></div>
+<form id="stockForm"><div class="field"><label>اسم المنتج</label><input id="stockName" required></div><div class="field"><label>الكمية</label><input id="stockQty" type="number" min="0" required></div><div class="field"><label>سعر البيع (دج)</label><input id="stockPrice" type="number" min="0" required></div><div class="field"><label>حد التنبيه</label><input id="stockMin" type="number" min="0" value="2"></div><div class="actions"><button class="primary">إضافة منتج</button></div></form><hr><div id="stockTable"></div></div></section>
+
+<section id="customers" class="panel"><div class="card"><div class="toolbar"><h2>الزبائن</h2></div>
+<form id="customerForm"><div class="field"><label>اسم الزبون</label><input id="custName" required></div><div class="field"><label>الهاتف</label><input id="custPhone"></div><div class="field full"><label>ملاحظة</label><textarea id="custNote"></textarea></div><div class="actions"><button class="primary">إضافة زبون</button></div></form><hr><div id="customersTable"></div></div></section>
+
+<section id="reports" class="panel"><div class="card"><div class="toolbar"><h2>التقارير</h2><button class="primary" onclick="window.print()">طباعة / حفظ PDF</button></div><div id="report"></div></div></section>
+</main>
+
+<div id="modal" class="modal"><div class="modalbox"><div class="toolbar"><h2>فاتورة</h2><button class="light" onclick="closeModal()">×</button></div><div id="invoice" class="invoice"></div><div class="no-print" style="margin-top:12px"><button class="primary" onclick="window.print()">طباعة / PDF</button></div></div></div>
+
+<script>
+const KEY="mashrou3i_v2";
+let db=JSON.parse(localStorage.getItem(KEY)||'{"sales":[],"expenses":[],"debts":[],"stock":[],"customers":[]}');
+const today=new Date().toISOString().slice(0,10);
+document.querySelectorAll('input[type=date]').forEach(x=>x.value=today);
+const money=n=>Number(n||0).toLocaleString("ar-DZ")+" دج";
+const save=()=>{localStorage.setItem(KEY,JSON.stringify(db));render()};
+function tab(id){document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelector(`.nav button[data-tab="${id}"]`).classList.add("active")}
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>tab(b.dataset.tab));
+function del(type,i){if(confirm("هل تريد حذف هذا العنصر؟")){db[type].splice(i,1);save()}}
+function table(id,heads,rows){document.getElementById(id).innerHTML=rows.length?`<div class="tablewrap"><table><thead><tr>${heads.map(x=>`<th>${x}</th>`).join("")}</tr></thead><tbody>${rows.join("")}</tbody></table></div>`:"<div class='empty'>لا توجد بيانات.</div>"}
+function render(){
+let st=db.sales.filter(x=>x.date===today).reduce((a,x)=>a+ +x.amount,0), et=db.expenses.filter(x=>x.date===today).reduce((a,x)=>a+ +x.amount,0), sa=db.sales.reduce((a,x)=>a+ +x.amount,0), ex=db.expenses.reduce((a,x)=>a+ +x.amount,0), de=db.debts.reduce((a,x)=>a+ +x.amount,0);
+sToday.textContent=money(st);eToday.textContent=money(et);profit.textContent=money(sa-ex);debt.textContent=money(de);
+let q=(saleSearch?.value||"").trim().toLowerCase();
+table("salesTable",["المنتج","الزبون","المبلغ","التاريخ",""],db.sales.map((x,i)=>({x,i})).filter(o=>(o.x.name+" "+o.x.customer).toLowerCase().includes(q)).map(o=>{let x=o.x;return `<tr><td>${x.name}</td><td>${x.customer||"-"}</td><td>${money(x.amount)}</td><td>${x.date}</td><td><button class="danger" onclick="del('sales',${o.i})">حذف</button></td></tr>`}));
+table("expensesTable",["الوصف","التصنيف","المبلغ","التاريخ",""],db.expenses.map((x,i)=>`<tr><td>${x.name}</td><td><span class="pill">${x.cat}</span></td><td>${money(x.amount)}</td><td>${x.date}</td><td><button class="danger" onclick="del('expenses',${i})">حذف</button></td></tr>`));
+table("debtsTable",["الزبون","المبلغ","الاستحقاق","ملاحظة",""],db.debts.map((x,i)=>`<tr><td>${x.customer}</td><td>${money(x.amount)}</td><td>${x.date}</td><td>${x.note||"-"}</td><td><button class="danger" onclick="del('debts',${i})">تم الدفع</button></td></tr>`));
+table("stockTable",["المنتج","الكمية","السعر","الحالة",""],db.stock.map((x,i)=>`<tr><td>${x.name}</td><td>${x.qty}</td><td>${money(x.price)}</td><td class="${+x.qty<=+x.min?'low':''}">${+x.qty<=+x.min?'مخزون منخفض':'جيد'}</td><td><button class="danger" onclick="del('stock',${i})">حذف</button></td></tr>`));
+table("customersTable",["الاسم","الهاتف","ملاحظة",""],db.customers.map((x,i)=>`<tr><td>${x.name}</td><td>${x.phone||"-"}</td><td>${x.note||"-"}</td><td><button class="danger" onclick="del('customers',${i})">حذف</button></td></tr>`));
+let all=[...db.sales.map(x=>({t:"بيع",n:x.name,a:x.amount,d:x.date})),...db.expenses.map(x=>({t:"مصروف",n:x.name,a:x.amount,d:x.date}))].sort((a,b)=>b.d.localeCompare(a.d)).slice(0,8);
+table("recent",["النوع","الوصف","المبلغ","التاريخ"],all.map(x=>`<tr><td>${x.t}</td><td>${x.n}</td><td>${money(x.a)}</td><td>${x.d}</td></tr>`));
+document.getElementById("report").innerHTML=`<p><b>إجمالي المبيعات:</b> ${money(sa)}</p><p><b>إجمالي المصاريف:</b> ${money(ex)}</p><p><b>الربح التقريبي:</b> ${money(sa-ex)}</p><p><b>الديون المستحقة:</b> ${money(de)}</p><p><b>عدد المنتجات في المخزون:</b> ${db.stock.length}</p><p><b>عدد الزبائن:</b> ${db.customers.length}</p>`;
+}
+saleForm.onsubmit=e=>{e.preventDefault();db.sales.push({name:saleName.value,amount:saleAmount.value,customer:saleCustomer.value,date:saleDate.value});e.target.reset();saleDate.value=today;save()};
+expenseForm.onsubmit=e=>{e.preventDefault();db.expenses.push({name:expenseName.value,amount:expenseAmount.value,date:expenseDate.value,cat:expenseCat.value});e.target.reset();expenseDate.value=today;save()};
+debtForm.onsubmit=e=>{e.preventDefault();db.debts.push({customer:debtCustomer.value,amount:debtAmount.value,date:debtDate.value,note:debtNote.value});e.target.reset();debtDate.value=today;save()};
+stockForm.onsubmit=e=>{e.preventDefault();db.stock.push({name:stockName.value,qty:stockQty.value,price:stockPrice.value,min:stockMin.value});e.target.reset();stockMin.value=2;save()};
+customerForm.onsubmit=e=>{e.preventDefault();db.customers.push({name:custName.value,phone:custPhone.value,note:custNote.value});e.target.reset();save()};
+function backup(){let b=new Blob([JSON.stringify(db,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="mashrou3i-backup.json";a.click()}
+function openInvoice(){let x=db.sales[db.sales.length-1];if(!x){alert("أضف بيعًا أولًا.");return}invoice.innerHTML=`<h2>مشروعي</h2><p>فاتورة بيع</p><div class="row"><span>التاريخ</span><b>${x.date}</b></div><div class="row"><span>الزبون</span><b>${x.customer||"عميل"}</b></div><div class="row"><span>المنتج / الخدمة</span><b>${x.name}</b></div><div class="row"><span>المبلغ</span><b>${money(x.amount)}</b></div><p style="margin-top:25px;text-align:center">شكراً لثقتكم</p>`;modal.classList.add("show")}
+function closeModal(){modal.classList.remove("show")}
+render();
+</script>
+</body></html>

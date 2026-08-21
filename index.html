@@ -2239,6 +2239,56 @@ if(savedRestaurant){
 render();
 
 </script>
+<!-- Subscription Modal -->
+<div id="subscriptionModal" class="subscription-modal">
 
+  <div class="subscription-box">
+
+    <button class="subscription-close" onclick="closeSubscription()">×</button>
+
+    <div class="subscription-icon">🍕</div>
+
+    <h2>اشترك في أسامة ديجيتال</h2>
+
+    <p>أدخل معلوماتك وسنرسل طلب الاشتراك مباشرة عبر واتساب.</p>
+
+    <div class="selected-plan">
+      <strong id="planName">Pro</strong>
+      <span id="planPrice">2500 دج / شهر</span>
+    </div>
+
+    <input
+      id="customerName"
+      type="text"
+      placeholder="👤 الاسم الكامل">
+
+    <input
+      id="restaurantName"
+      type="text"
+      placeholder="🏪 اسم المطعم أو البيتزيريا">
+
+    <input
+      id="customerPhone"
+      type="tel"
+      placeholder="📱 رقم الهاتف">
+
+    <input id="selectedPlan" type="hidden">
+    <input id="selectedPrice" type="hidden">
+
+    <button
+      class="primary subscription-submit"
+      onclick="sendSubscription()">
+      📲 إرسال طلب الاشتراك
+    </button>
+
+    <button
+      class="secondary subscription-cancel"
+      onclick="closeSubscription()">
+      إلغاء
+    </button>
+
+  </div>
+
+</div>
 </body>
 </html>

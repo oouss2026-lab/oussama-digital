@@ -2307,56 +2307,118 @@ if(savedRestaurant){
 render();
 
 </script>
-<!-- Subscription Modal -->
-<div id="subscriptionModal" class="subscription-modal">
+<!-- =========================
+     SUBSCRIPTION MODAL
+========================= -->
 
-  <div class="subscription-box">
+<div id="subscriptionModal" class="modal">
 
-    <button class="subscription-close" onclick="closeSubscription()">×</button>
+  <div class="modalBox subscriptionBox">
 
-    <div class="subscription-icon">🍕</div>
+    <div class="modalHead">
 
-    <h2>اشترك في أسامة ديجيتال</h2>
+      <div>
+        <h2>🍕 الاشتراك في أسامة ديجيتال</h2>
+        <p class="desc">
+          أكمل معلوماتك وسنرسل طلب الاشتراك مباشرة عبر واتساب.
+        </p>
+      </div>
 
-    <p>أدخل معلوماتك وسنرسل طلب الاشتراك مباشرة عبر واتساب.</p>
+      <button
+        type="button"
+        class="close"
+        onclick="closeSubscription()">
+        ×
+      </button>
 
-    <div class="selected-plan">
-      <strong id="planName">Pro</strong>
-      <span id="planPrice">2500 دج / شهر</span>
     </div>
 
-    <input
-      id="customerName"
-      type="text"
-      placeholder="👤 الاسم الكامل">
+    <div class="subscriptionPlan">
 
-    <input
-      id="restaurantName"
-      type="text"
-      placeholder="🏪 اسم المطعم أو البيتزيريا">
+      <div>
+        <span class="subscriptionLabel">الباقة المختارة</span>
+        <strong id="planName">Pro</strong>
+      </div>
 
-    <input
-      id="customerPhone"
-      type="tel"
-      placeholder="📱 رقم الهاتف">
+      <div class="subscriptionPrice">
+        <span id="planPrice">2500 دج / شهر</span>
+      </div>
 
-    <input id="selectedPlan" type="hidden">
-    <input id="selectedPrice" type="hidden">
+    </div>
 
-    <button
-      class="primary subscription-submit"
-      onclick="sendSubscription()">
-      📲 إرسال طلب الاشتراك
-    </button>
+    <form
+      id="subscriptionForm"
+      onsubmit="event.preventDefault(); sendSubscription();">
 
-    <button
-      class="secondary subscription-cancel"
-      onclick="closeSubscription()">
-      إلغاء
-    </button>
+      <div class="field">
+        <label for="customerName">
+          الاسم الكامل
+        </label>
+
+        <input
+          id="customerName"
+          type="text"
+          autocomplete="name"
+          placeholder="مثال: أسامة خليفة">
+      </div>
+
+      <div class="field">
+        <label for="restaurantName">
+          اسم المطعم أو البيتزيريا
+        </label>
+
+        <input
+          id="restaurantName"
+          type="text"
+          placeholder="مثال: Pizza Oussama">
+      </div>
+
+      <div class="field full">
+        <label for="customerPhone">
+          رقم الهاتف
+        </label>
+
+        <input
+          id="customerPhone"
+          type="tel"
+          inputmode="tel"
+          autocomplete="tel"
+          placeholder="مثال: 0555 12 34 56">
+      </div>
+
+      <input
+        id="selectedPlan"
+        type="hidden"
+        value="">
+
+      <input
+        id="selectedPrice"
+        type="hidden"
+        value="">
+
+      <div class="formActions">
+
+        <button
+          type="submit"
+          class="btn primary subscriptionSubmit">
+          📲 إرسال طلب الاشتراك
+        </button>
+
+        <button
+          type="button"
+          class="btn light"
+          onclick="closeSubscription()">
+          إلغاء
+        </button>
+
+      </div>
+
+    </form>
+
+    <div class="subscriptionNote">
+      🔒 معلوماتك تستعمل فقط لمعالجة طلب الاشتراك والتواصل معك.
+    </div>
 
   </div>
 
 </div>
-</body>
-</html>

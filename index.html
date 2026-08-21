@@ -1243,6 +1243,10 @@ button:active{transform:scale(.98)}
 <script>
 function choosePlan(plan, price) {
 
+function choosePlan(plan, price) {
+
+  const phone = "213658644142";
+
   const message =
     "السلام عليكم، أريد الاشتراك في أسامة ديجيتال 🍕\n\n" +
     "الباقة: " + plan + "\n" +
@@ -1250,10 +1254,13 @@ function choosePlan(plan, price) {
     "أريد معرفة طريقة الدفع وتفعيل الحساب.";
 
   const whatsapp =
-    "https://wa.me/?text=" +
+    "https://wa.me/" +
+    phone +
+    "?text=" +
     encodeURIComponent(message);
 
   window.open(whatsapp, "_blank");
+}
 }
 const state={
   sales:JSON.parse(localStorage.getItem("ouss_sales")||"[]"),

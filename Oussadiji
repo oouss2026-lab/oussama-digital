@@ -7,58 +7,7 @@
 <meta name="description" content="نظام إدارة الأعمال والمبيعات والمصاريف والمخزون">
 <title>أسامة ديجيتال | نظام إدارة الأعمال</title>
 
-<style>
-:root{
---bg:#f5f6fa;--card:#fff;--text:#171c26;--muted:#72798a;
---line:#e5e8ef;--primary:#5b4bdb;--primary2:#796bea;
---dark:#17142b;--green:#12845b;--red:#c83d35;--yellow:#a86b00;
---blue:#2563eb;--shadow:0 10px 30px rgba(20,25,45,.07);--r:17px
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-header{position:sticky;top:0;z-index:1000;background:linear-gradient(135deg,#17142b,#292149);color:#fff;box-shadow:0 5px 25px #0002}
-.header{max-width:1250px;margin:auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{display:flex;align-items:center;gap:10px}
-.logo{width:43px;height:43px;border-radius:13px;background:linear-gradient(135deg,#796bea,#5141c8);display:grid;place-items:center;font-size:21px;font-weight:900}
-.brand b{display:block;font-size:17px}.brand small{color:#c9c5d8;font-size:9px}
-.actions{display:flex;gap:7px;flex-wrap:wrap}
-main{max-width:1250px;margin:auto;padding:20px 15px 45px}
-.hero{background:radial-gradient(circle at 15% 15%,#ffffff20,transparent 30%),linear-gradient(135deg,#211631,#5b4bdb 70%,#796bea);color:#fff;border-radius:23px;padding:27px;margin-bottom:17px;box-shadow:0 18px 40px #30236920}
-.hero h1{margin:0 0 7px;font-size:28px}.hero p{margin:0;color:#eeeafa;font-size:12px}.heroBtns{display:flex;gap:7px;flex-wrap:wrap;margin-top:17px}
-.btn{border:0;border-radius:10px;padding:9px 13px;font-size:11px;font-weight:800;transition:.18s;display:inline-flex;align-items:center;justify-content:center;gap:5px}
-.btn:hover{transform:translateY(-1px)}.primary{background:var(--primary);color:#fff}.light{background:#fff;color:var(--text);border:1px solid var(--line)}.dark{background:var(--dark);color:#fff}.green{background:#e9f8f1;color:var(--green)}.red{background:#fff0ee;color:var(--red)}.yellow{background:#fff6df;color:var(--yellow)}.blue{background:#eff6ff;color:var(--blue)}.sm{padding:6px 8px;font-size:9px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:17px}
-.stat,.card,.mini{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
-.stat{padding:15px;display:flex;align-items:center;gap:10px}.statIcon{width:44px;height:44px;border-radius:13px;background:#f0eeff;display:grid;place-items:center;font-size:20px}.stat:nth-child(2) .statIcon{background:#fff0ee}.stat:nth-child(3) .statIcon{background:#e9f8f1}.stat:nth-child(4) .statIcon{background:#fff6df}
-.label{font-size:10px;color:var(--muted)}.value{font-size:19px;font-weight:900;margin-top:3px}.sub{font-size:9px;color:var(--muted);margin-top:2px}
-.navBox{background:#fff;border:1px solid var(--line);border-radius:15px;padding:6px;box-shadow:var(--shadow);overflow:auto;margin-bottom:17px}
-.nav{display:flex;gap:4px;min-width:max-content}.nav button{border:0;background:transparent;color:#687080;border-radius:10px;padding:10px 12px;font-size:10px;font-weight:800}.nav button.active,.nav button:hover{background:var(--dark);color:#fff}
-.panel{display:none}.panel.active{display:block;animation:fade .2s}@keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
-.grid2{display:grid;grid-template-columns:1.35fr .65fr;gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
-.card{padding:18px}.mini{padding:15px}.mini strong{display:block;font-size:20px;margin-top:4px}
-.toolbar{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:14px}.toolbarBtns{display:flex;gap:6px;flex-wrap:wrap}
-h2{font-size:17px;margin:0}.desc{font-size:10px;color:var(--muted);margin:3px 0 0}
-.search{display:flex;gap:6px;margin-bottom:11px}.search input{flex:1}
-input,select,textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 10px;background:#fff;color:var(--text);outline:none;font-size:11px}
-input:focus,select:focus,textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px #5b4bdb12}
-form{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.field{display:flex;flex-direction:column;gap:4px}.field.full,.formActions{grid-column:1/-1}label{font-size:10px;font-weight:800;color:#596273}
-.formActions{display:flex;gap:6px;flex-wrap:wrap}
-.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:650px}th,td{text-align:right;padding:10px 7px;border-bottom:1px solid var(--line);font-size:10px}th{background:#fafbfc;color:var(--muted);font-size:9px}
-.badge{display:inline-flex;padding:4px 7px;border-radius:999px;font-size:8px;font-weight:900}.purple{background:#eeeaff;color:#493bc0}.badgeGreen{background:#e9f8f1;color:var(--green)}.badgeRed{background:#fff0ee;color:var(--red)}.badgeYellow{background:#fff6df;color:var(--yellow)}.badgeBlue{background:#eff6ff;color:var(--blue)}
-.empty{text-align:center;padding:30px;color:var(--muted);font-size:11px}.empty div{font-size:30px;opacity:.35;margin-bottom:4px}
-.activity{display:flex;flex-direction:column;gap:7px}.activityItem{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid var(--line);border-radius:11px;padding:10px}.activityLeft{display:flex;align-items:center;gap:8px;min-width:0}.activityIcon{width:34px;height:34px;border-radius:10px;background:#f0eeff;display:grid;place-items:center}.activityName{font-size:10px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.activityDate{font-size:8px;color:var(--muted)}
-.reportGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.reportBox{background:#fafbfc;border:1px solid var(--line);border-radius:13px;padding:14px}.reportBox strong{display:block;font-size:18px;margin-top:5px}.progress{height:7px;background:#edf0f5;border-radius:20px;overflow:hidden;margin-top:8px}.progress span{height:100%;display:block;background:linear-gradient(90deg,var(--primary),var(--primary2))}
-.modal{display:none;position:fixed;inset:0;background:#0a0815aa;z-index:3000;padding:16px}.modal.show{display:flex;align-items:center;justify-content:center}.modalBox{width:100%;max-width:650px;max-height:92vh;overflow:auto;background:#fff;border-radius:19px;padding:18px;box-shadow:0 30px 80px #0004}.modalHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.close{border:0;background:#f1f2f5;width:33px;height:33px;border-radius:9px;font-size:19px}
-.setting{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid var(--line)}.setting:last-child{border:0}.setting b{font-size:11px}.setting small{display:block;color:var(--muted);font-size:9px;margin-top:3px}
-.invoice{border:1px solid #ddd;padding:22px;border-radius:10px}.invoiceHead{display:flex;justify-content:space-between;border-bottom:2px solid var(--dark);padding-bottom:12px;margin-bottom:12px}.invoiceBrand{font-size:21px;font-weight:900}.invoiceRow{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #eee;font-size:11px}.invoiceTotal{display:flex;justify-content:space-between;margin-top:12px;padding:12px;background:#f4f2ff;border-radius:9px;font-weight:900}
-.toast{position:fixed;bottom:18px;left:18px;z-index:6000;background:var(--dark);color:#fff;border-radius:10px;padding:11px 15px;font-size:10px;opacity:0;transform:translateY(15px);transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:none}
-@media(max-width:950px){.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.reportGrid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){main{padding:13px 9px 35px}.hero{padding:21px}.hero h1{font-size:22px}.stats{gap:7px}.stat{padding:11px}.statIcon{width:37px;height:37px}.value{font-size:15px}.grid3,.reportGrid{grid-template-columns:1fr}.card{padding:14px}form{grid-template-columns:1fr}.field.full,.formActions{grid-column:auto}.brand b{font-size:14px}}
-@media print{header,.hero,.stats,.navBox,.toolbar,.search,.noPrint,.toast{display:none!important}main{padding:0}.panel{display:block!important}.card{box-shadow:none;border:0;padding:0}}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>

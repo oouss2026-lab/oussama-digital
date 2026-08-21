@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#17142b">
+<meta name="description" content="نظام إدارة الأعمال والمبيعات والمصاريف والمخزون">
+<title>أسامة ديجيتال | نظام إدارة الأعمال</title>
+
+<style>
+:root{
+--bg:#f5f6fa;--card:#fff;--text:#171c26;--muted:#72798a;
+--line:#e5e8ef;--primary:#5b4bdb;--primary2:#796bea;
+--dark:#17142b;--green:#12845b;--red:#c83d35;--yellow:#a86b00;
+--blue:#2563eb;--shadow:0 10px 30px rgba(20,25,45,.07);--r:17px
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+header{position:sticky;top:0;z-index:1000;background:linear-gradient(135deg,#17142b,#292149);color:#fff;box-shadow:0 5px 25px #0002}
+.header{max-width:1250px;margin:auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:43px;height:43px;border-radius:13px;background:linear-gradient(135deg,#796bea,#5141c8);display:grid;place-items:center;font-size:21px;font-weight:900}
+.brand b{display:block;font-size:17px}.brand small{color:#c9c5d8;font-size:9px}
+.actions{display:flex;gap:7px;flex-wrap:wrap}
+main{max-width:1250px;margin:auto;padding:20px 15px 45px}
+.hero{background:radial-gradient(circle at 15% 15%,#ffffff20,transparent 30%),linear-gradient(135deg,#211631,#5b4bdb 70%,#796bea);color:#fff;border-radius:23px;padding:27px;margin-bottom:17px;box-shadow:0 18px 40px #30236920}
+.hero h1{margin:0 0 7px;font-size:28px}.hero p{margin:0;color:#eeeafa;font-size:12px}.heroBtns{display:flex;gap:7px;flex-wrap:wrap;margin-top:17px}
+.btn{border:0;border-radius:10px;padding:9px 13px;font-size:11px;font-weight:800;transition:.18s;display:inline-flex;align-items:center;justify-content:center;gap:5px}
+.btn:hover{transform:translateY(-1px)}.primary{background:var(--primary);color:#fff}.light{background:#fff;color:var(--text);border:1px solid var(--line)}.dark{background:var(--dark);color:#fff}.green{background:#e9f8f1;color:var(--green)}.red{background:#fff0ee;color:var(--red)}.yellow{background:#fff6df;color:var(--yellow)}.blue{background:#eff6ff;color:var(--blue)}.sm{padding:6px 8px;font-size:9px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:17px}
+.stat,.card,.mini{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.stat{padding:15px;display:flex;align-items:center;gap:10px}.statIcon{width:44px;height:44px;border-radius:13px;background:#f0eeff;display:grid;place-items:center;font-size:20px}.stat:nth-child(2) .statIcon{background:#fff0ee}.stat:nth-child(3) .statIcon{background:#e9f8f1}.stat:nth-child(4) .statIcon{background:#fff6df}
+.label{font-size:10px;color:var(--muted)}.value{font-size:19px;font-weight:900;margin-top:3px}.sub{font-size:9px;color:var(--muted);margin-top:2px}
+.navBox{background:#fff;border:1px solid var(--line);border-radius:15px;padding:6px;box-shadow:var(--shadow);overflow:auto;margin-bottom:17px}
+.nav{display:flex;gap:4px;min-width:max-content}.nav button{border:0;background:transparent;color:#687080;border-radius:10px;padding:10px 12px;font-size:10px;font-weight:800}.nav button.active,.nav button:hover{background:var(--dark);color:#fff}
+.panel{display:none}.panel.active{display:block;animation:fade .2s}@keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+.grid2{display:grid;grid-template-columns:1.35fr .65fr;gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.card{padding:18px}.mini{padding:15px}.mini strong{display:block;font-size:20px;margin-top:4px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:14px}.toolbarBtns{display:flex;gap:6px;flex-wrap:wrap}
+h2{font-size:17px;margin:0}.desc{font-size:10px;color:var(--muted);margin:3px 0 0}
+.search{display:flex;gap:6px;margin-bottom:11px}.search input{flex:1}
+input,select,textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 10px;background:#fff;color:var(--text);outline:none;font-size:11px}
+input:focus,select:focus,textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px #5b4bdb12}
+form{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.field{display:flex;flex-direction:column;gap:4px}.field.full,.formActions{grid-column:1/-1}label{font-size:10px;font-weight:800;color:#596273}
+.formActions{display:flex;gap:6px;flex-wrap:wrap}
+.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:650px}th,td{text-align:right;padding:10px 7px;border-bottom:1px solid var(--line);font-size:10px}th{background:#fafbfc;color:var(--muted);font-size:9px}
+.badge{display:inline-flex;padding:4px 7px;border-radius:999px;font-size:8px;font-weight:900}.purple{background:#eeeaff;color:#493bc0}.badgeGreen{background:#e9f8f1;color:var(--green)}.badgeRed{background:#fff0ee;color:var(--red)}.badgeYellow{background:#fff6df;color:var(--yellow)}.badgeBlue{background:#eff6ff;color:var(--blue)}
+.empty{text-align:center;padding:30px;color:var(--muted);font-size:11px}.empty div{font-size:30px;opacity:.35;margin-bottom:4px}
+.activity{display:flex;flex-direction:column;gap:7px}.activityItem{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid var(--line);border-radius:11px;padding:10px}.activityLeft{display:flex;align-items:center;gap:8px;min-width:0}.activityIcon{width:34px;height:34px;border-radius:10px;background:#f0eeff;display:grid;place-items:center}.activityName{font-size:10px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.activityDate{font-size:8px;color:var(--muted)}
+.reportGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.reportBox{background:#fafbfc;border:1px solid var(--line);border-radius:13px;padding:14px}.reportBox strong{display:block;font-size:18px;margin-top:5px}.progress{height:7px;background:#edf0f5;border-radius:20px;overflow:hidden;margin-top:8px}.progress span{height:100%;display:block;background:linear-gradient(90deg,var(--primary),var(--primary2))}
+.modal{display:none;position:fixed;inset:0;background:#0a0815aa;z-index:3000;padding:16px}.modal.show{display:flex;align-items:center;justify-content:center}.modalBox{width:100%;max-width:650px;max-height:92vh;overflow:auto;background:#fff;border-radius:19px;padding:18px;box-shadow:0 30px 80px #0004}.modalHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.close{border:0;background:#f1f2f5;width:33px;height:33px;border-radius:9px;font-size:19px}
+.setting{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid var(--line)}.setting:last-child{border:0}.setting b{font-size:11px}.setting small{display:block;color:var(--muted);font-size:9px;margin-top:3px}
+.invoice{border:1px solid #ddd;padding:22px;border-radius:10px}.invoiceHead{display:flex;justify-content:space-between;border-bottom:2px solid var(--dark);padding-bottom:12px;margin-bottom:12px}.invoiceBrand{font-size:21px;font-weight:900}.invoiceRow{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #eee;font-size:11px}.invoiceTotal{display:flex;justify-content:space-between;margin-top:12px;padding:12px;background:#f4f2ff;border-radius:9px;font-weight:900}
+.toast{position:fixed;bottom:18px;left:18px;z-index:6000;background:var(--dark);color:#fff;border-radius:10px;padding:11px 15px;font-size:10px;opacity:0;transform:translateY(15px);transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:none}
+@media(max-width:950px){.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.reportGrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){main{padding:13px 9px 35px}.hero{padding:21px}.hero h1{font-size:22px}.stats{gap:7px}.stat{padding:11px}.statIcon{width:37px;height:37px}.value{font-size:15px}.grid3,.reportGrid{grid-template-columns:1fr}.card{padding:14px}form{grid-template-columns:1fr}.field.full,.formActions{grid-column:auto}.brand b{font-size:14px}}
+@media print{header,.hero,.stats,.navBox,.toolbar,.search,.noPrint,.toast{display:none!important}main{padding:0}.panel{display:block!important}.card{box-shadow:none;border:0;padding:0}}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="header">
+<div class="brand">
+<div class="logo">◈</div>
+<div><b id="brandName">أسامة ديجيتال</b><small id="brandSub">نظام إدارة الأعمال والمبيعات</small></div>
+</div>
+<div class="actions">
+<button class="btn light" onclick="openData()">⚙ إدارة البيانات</button>
+<button class="btn primary" onclick="openSale()">＋ بيع سريع</button>
+</div>
+</div>
+</header>
+
+<main>
+
+<section class="hero">
+<h1 id="heroTitle">إدارة مشروعك بطريقة أذكى ✦</h1>
+<p>المبيعات، المصاريف، الأرباح، الديون، المخزون والزبائن في مكان واحد.</p>
+<div class="heroBtns">
+<button class="btn light" onclick="tab('sales')">💰 إضافة بيع</button>
+<button class="btn light" onclick="openExpense()">💸 مصروف</button>
+<button class="btn light" onclick="tab('reports')">📊 التقارير</button>
+</div>
+</section>
+
+<section class="stats">
+<div class="stat"><div class="statIcon">💰</div><div><div class="label">مبيعات اليوم</div><div class="value" id="todaySales">0 دج</div><div class="sub" id="todaySalesCount">0 عملية</div></div></div>
+<div class="stat"><div class="statIcon">💸</div><div><div class="label">مصاريف اليوم</div><div class="value" id="todayExp">0 دج</div><div class="sub" id="todayExpCount">0 عملية</div></div></div>
+<div class="stat"><div class="statIcon">📈</div><div><div class="label">الربح الصافي</div><div class="value" id="netProfit">0 دج</div><div class="sub">المبيعات − المصاريف</div></div></div>
+<div class="stat"><div class="statIcon">⏳</div><div><div class="label">الديون</div><div class="value" id="totalDebt">0 دج</div><div class="sub" id="debtCount">0 دين</div></div></div>
+</section>
+
+<div class="navBox">
+<div class="nav">
+<button class="active" data-tab="dashboard">🏠 الرئيسية</button>
+<button data-tab="sales">💰 المبيعات</button>
+<button data-tab="expenses">💸 المصاريف</button>
+<button data-tab="debts">⏳ الديون</button>
+<button data-tab="stock">📦 المخزون</button>
+<button data-tab="customers">👥 الزبائن</button>
+<button data-tab="reports">📊 التقارير</button>
+</div>
+</div>
+
+<section id="dashboard" class="panel active">
+<div class="grid2">
+
+<div class="card">
+<div class="toolbar">
+<div><h2>آخر العمليات</h2><p class="desc">آخر النشاطات في مشروعك.</p></div>
+<button class="btn primary sm" onclick="openSale()">＋ بيع</button>
+</div>
+<div id="recent"></div>
+</div>
+
+<div>
+<div class="grid3">
+<div class="mini"><div class="label">المنتجات</div><strong id="stockCount">0</strong><div class="sub">في المخزون</div></div>
+<div class="mini"><div class="label">الزبائن</div><strong id="customerCount">0</strong><div class="sub">مسجل</div></div>
+<div class="mini"><div class="label">المبيعات</div><strong id="salesCount">0</strong><div class="sub">عملية</div></div>
+</div>
+
+<div class="card" style="margin-top:12px">
+<div class="toolbar"><div><h2>تنبيه المخزون</h2><p class="desc">المنتجات التي تحتاج إلى تزويد.</p></div><button class="btn light sm" onclick="tab('stock')">عرض</button></div>
+<div id="stockAlert"></div>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="sales" class="panel">
+<div class="card">
+<div class="toolbar">
+<div><h2>المبيعات</h2><p class="desc">سجل وتابع كل عمليات البيع.</p></div>
+<div class="toolbarBtns"><button class="btn primary" onclick="openSale()">＋ إضافة بيع</button><button class="btn light" onclick="invoice()">🧾 فاتورة</button></div>
+</div>
+<div class="search"><input id="salesSearch" placeholder="🔎 ابحث عن منتج أو زبون..." oninput="renderSales()"></div>
+<div id="salesTable"></div>
+</div>
+</section>
+
+<section id="expenses" class="panel">
+<div class="card">
+<div class="toolbar">
+<div><h2>المصاريف</h2><p class="desc">تحكم في تكاليف مشروعك.</p></div>
+<button class="btn primary" onclick="openExpense()">＋ إضافة مصروف</button>
+</div>
+<div class="search"><input id="expenseSearch" placeholder="🔎 ابحث في المصاريف..." oninput="renderExpenses()"></div>
+<div id="expenseTable"></div>
+</div>
+</section>
+
+<section id="debts" class="panel">
+<div class="card">
+<div class="toolbar">
+<div><h2>الديون</h2><p class="desc">تابع المبالغ المستحقة وسجل التسديد.</p></div>
+<button class="btn primary" onclick="openDebt()">＋ إضافة دين</button>
+</div>
+<div id="debtTable"></div>
+</div>
+</section>
+
+<section id="stock" class="panel">
+<div class="card">
+<div class="toolbar">
+<div><h2>المخزون</h2><p class="desc">المنتجات والكميات والأسعار والتنبيهات.</p></div>
+<button class="btn primary" onclick="openStock()">＋ إضافة منتج</button>
+</div>
+<div class="search"><input id="stockSearch" placeholder="🔎 ابحث عن منتج..." oninput="renderStock()"></div>
+<div id="stockTable"></div>
+</div>
+</section>
+
+<section id="customers" class="panel">
+<div class="card">
+<div class="toolbar">
+<div><h2>الزبائن</h2><p class="desc">سجل معلومات العملاء ومشترياتهم.</p></div>
+<button class="btn primary" onclick="openCustomer()">＋ إضافة زبون</button>
+</div>
+<div class="search"><input id="customerSearch" placeholder="🔎 ابحث عن زبون..." oninput="renderCustomers()"></div>
+<div id="customerTable"></div>
+</div>
+</section>
+
+<section id="reports" class="panel">
+<div class="card">
+<div class="toolbar">
+<div><h2>التقارير والإحصائيات</h2><p class="desc">نظرة شاملة على أداء المشروع.</p></div>
+<div class="toolbarBtns"><button class="btn light" onclick="openData()">إدارة البيانات</button><button class="btn primary" onclick="window.print()">🖨 طباعة / PDF</button></div>
+</div>
+<div id="reportsGrid" class="reportGrid"></div>
+</div>
+</section>
+
+</main>
+
+<div id="modal" class="modal">
+<div class="modalBox">
+<div class="modalHead"><h2 id="modalTitle">إضافة</h2><button class="close" onclick="closeModal()">×</button></div>
+<div id="modalBody"></div>
+</div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+const STORAGE="oussama_digital_final_v1";
+
+const DEFAULT={
+settings:{name:"أسامة ديجيتال",subtitle:"نظام إدارة الأعمال والمبيعات",currency:"دج"},
+sales:[],expenses:[],debts:[],stock:[],customers:[]
+};
+
+let db=load();
+
+function load(){
+try{
+const x=JSON.parse(localStorage.getItem(STORAGE)||"null");
+if(!x)return structuredClone(DEFAULT);
+return {
+...structuredClone(DEFAULT),...x,
+settings:{...DEFAULT.settings,...(x.settings||{})},
+sales:Array.isArray(x.sales)?x.sales:[],
+expenses:Array.isArray(x.expenses)?x.expenses:[],
+debts:Array.isArray(x.debts)?x.debts:[],
+stock:Array.isArray(x.stock)?x.stock:[],
+customers:Array.isArray(x.customers)?x.customers:[]
+};
+}catch(e){return structuredClone(DEFAULT)}
+}
+
+function save(){
+localStorage.setItem(STORAGE,JSON.stringify(db));
+renderAll();
+}
+
+function id(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function n(v){return Number(v)||0}
+function date(){return new Date().toISOString().slice(0,10)}
+function money(v){return n(v).toLocaleString("ar-DZ")+" "+db.settings.currency}
+function fmt(d){if(!d)return"—";return new Date(d+"T00:00:00").toLocaleDateString("ar-DZ",{year:"numeric",month:"short",day:"numeric"})}
+function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function toast(t){const x=document.getElementById("toast");x.textContent=t;x.classList.add("show");clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.remove("show"),2200)}
+
+function tab(name){
+document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));
+document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));
+document.getElementById(name).classList.add("active");
+document.querySelector(`[data-tab="${name}"]`)?.classList.add("active");
+scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll(".nav button").forEach(x=>x.onclick=()=>tab(x.dataset.tab));
+
+function modal(title,html){
+document.getElementById("modalTitle").textContent=title;
+document.getElementById("modalBody").innerHTML=html;
+document.getElementById("modal").classList.add("show");
+}
+function closeModal(){document.getElementById("modal").classList.remove("show")}
+document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal()};
+
+function deleteItem(type,itemId){
+if(!confirm("هل تريد حذف هذا العنصر؟"))return;
+db[type]=db[type].filter(x=>x.id!==itemId);
+save();toast("تم الحذف");
+}
+
+/* SALES */
+function openSale(itemId=null){
+const x=itemId?db.sales.find(a=>a.id===itemId):{name:"",amount:"",customer:"",date:date(),payment:"نقدي",note:""};
+modal(itemId?"تعديل البيع":"إضافة بيع",`
+<form id="saleForm">
+<div class="field"><label>المنتج أو الخدمة *</label><input id="sn" value="${esc(x.name)}" required></div>
+<div class="field"><label>المبلغ (${esc(db.settings.currency)}) *</label><input id="sa" type="number" min="0" value="${x.amount}" required></div>
+<div class="field"><label>الزبون</label><input id="sc" value="${esc(x.customer)}"></div>
+<div class="field"><label>التاريخ</label><input id="sd" type="date" value="${x.date||date()}" required></div>
+<div class="field"><label>طريقة الدفع</label><select id="sp"><option>نقدي</option><option>بطاقة</option><option>تحويل</option><option>آجل</option></select></div>
+<div class="field"><label>ملاحظة</label><input id="sx" value="${esc(x.note)}"></div>
+<div class="formActions"><button class="btn primary">💾 حفظ</button><button type="button" class="btn light" onclick="closeModal()">إلغاء</button></div>
+</form>`);
+document.getElementById("sp").value=x.payment||"نقدي";
+document.getElementById("saleForm").onsubmit=e=>{
+e.preventDefault();
+const z={id:itemId||id(),name:sn.value.trim(),amount:n(sa.value),customer:sc.value.trim(),date:sd.value,payment:sp.value,note:sx.value.trim()};
+if(!z.name||z.amount<=0)return toast("أدخل البيانات بشكل صحيح");
+if(itemId)db.sales[db.sales.findIndex(a=>a.id===itemId)]=z;else db.sales.unshift(z);
+save();closeModal();toast(itemId?"تم تعديل البيع":"تم تسجيل البيع");
+};
+}
+
+/* EXPENSES */
+function openExpense(itemId=null){
+const x=itemId?db.expenses.find(a=>a.id===itemId):{name:"",amount:"",date:date(),category:"مشتريات",note:""};
+modal(itemId?"تعديل المصروف":"إضافة مصروف",`
+<form id="expenseForm">
+<div class="field"><label>وصف المصروف *</label><input id="en" value="${esc(x.name)}" required></div>
+<div class="field"><label>المبلغ *</label><input id="ea" type="number" min="0" value="${x.amount}" required></div>
+<div class="field"><label>التاريخ</label><input id="ed" type="date" value="${x.date||date()}"></div>
+<div class="field"><label>التصنيف</label><select id="ec">${["مشتريات","نقل","كراء","تسويق","أجور","فواتير","أخرى"].map(a=>`<option>${a}</option>`).join("")}</select></div>
+<div class="field full"><label>ملاحظة</label><input id="ex" value="${esc(x.note)}"></div>
+<div class="formActions"><button class="btn primary">💾 حفظ</button><button type="button" class="btn light" onclick="closeModal()">إلغاء</button></div>
+</form>`);
+ec.value=x.category||"مشتريات";
+document.getElementById("expenseForm").onsubmit=e=>{
+e.preventDefault();
+const z={id:itemId||id(),name:en.value.trim(),amount:n(ea.value),date:ed.value,category:ec.value,note:ex.value.trim()};
+if(!z.name||z.amount<=0)return toast("أدخل البيانات بشكل صحيح");
+if(itemId)db.expenses[db.expenses.findIndex(a=>a.id===itemId)]=z;else db.expenses.unshift(z);
+save();closeModal();toast("تم حفظ المصروف");
+};
+}
+
+/* DEBTS */
+function openDebt(itemId=null){
+const x=itemId?db.debts.find(a=>a.id===itemId):{customer:"",amount:"",date:date(),note:""};
+modal(itemId?"تعديل الدين":"إضافة دين",`
+<form id="debtForm">
+<div class="field"><label>اسم الزبون *</label><input id="dc" value="${esc(x.customer)}" required></div>
+<div class="field"><label>المبلغ *</label><input id="da" type="number" min="0" value="${x.amount}" required></div>
+<div class="field"><label>تاريخ الاستحقاق</label><input id="dd" type="date" value="${x.date||date()}"></div>
+<div class="field"><label>ملاحظة</label><input id="dx" value="${esc(x.note)}"></div>
+<div class="formActions"><button class="btn primary">💾 حفظ</button><button type="button" class="btn light" onclick="closeModal()">إلغاء</button></div>
+</form>`);
+document.getElementById("debtForm").onsubmit=e=>{
+e.preventDefault();
+const z={id:itemId||id(),customer:dc.value.trim(),amount:n(da.value),date:dd.value,note:dx.value.trim()};
+if(!z.customer||z.amount<=0)return toast("أدخل البيانات بشكل صحيح");
+if(itemId)db.debts[db.debts.findIndex(a=>a.id===itemId)]=z;else db.debts.unshift(z);
+save();closeModal();toast("تم حفظ الدين");
+};
+}
+function payDebt(itemId){
+if(!confirm("تأكيد أن الدين تم دفعه؟"))return;
+db.debts=db.debts.filter(x=>x.id!==itemId);save();toast("تم تسجيل التسديد");
+}
+
+/* STOCK */
+function openStock(itemId=null){
+const x=itemId?db.stock.find(a=>a.id===itemId):{name:"",qty:0,price:0,min:2};
+modal(itemId?"تعديل المنتج":"إضافة منتج",`
+<form id="stockForm">
+<div class="field"><label>اسم المنتج *</label><input id="pn" value="${esc(x.name)}" required></div>
+<div class="field"><label>الكمية</label><input id="pq" type="number" min="0" value="${x.qty}"></div>
+<div class="field"><label>سعر البيع</label><input id="pp" type="number" min="0" value="${x.price}"></div>
+<div class="field"><label>حد التنبيه</label><input id="pm" type="number" min="0" value="${x.min}"></div>
+<div class="formActions"><button class="btn primary">💾 حفظ</button><button type="button" class="btn light" onclick="closeModal()">إلغاء</button></div>
+</form>`);
+document.getElementById("stockForm").onsubmit=e=>{
+e.preventDefault();
+const z={id:itemId||id(),name:pn.value.trim(),qty:n(pq.value),price:n(pp.value),min:n(pm.value)};
+if(!z.name)return toast("أدخل اسم المنتج");
+if(itemId)db.stock[db.stock.findIndex(a=>a.id===itemId)]=z;else db.stock.unshift(z);
+save();closeModal();toast("تم حفظ المنتج");
+};
+}
+
+/* CUSTOMERS */
+function openCustomer(itemId=null){
+const x=itemId?db.customers.find(a=>a.id===itemId):{name:"",phone:"",note:""};
+modal(itemId?"تعديل الزبون":"إضافة زبون",`
+<form id="customerForm">
+<div class="field"><label>اسم الزبون *</label><input id="cn" value="${esc(x.name)}" required></div>
+<div class="field"><label>الهاتف</label><input id="cp" value="${esc(x.phone)}"></div>
+<div class="field full"><label>ملاحظة</label><textarea id="cx">${esc(x.note)}</textarea></div>
+<div class="formActions"><button class="btn primary">💾 حفظ</button><button type="button" class="btn light" onclick="closeModal()">إلغاء</button></div>
+</form>`);
+document.getElementById("customerForm").onsubmit=e=>{
+e.preventDefault();
+const z={id:itemId||id(),name:cn.value.trim(),phone:cp.value.trim(),note:cx.value.trim()};
+if(!z.name)return toast("أدخل اسم الزبون");
+if(itemId)db.customers[db.customers.findIndex(a=>a.id===itemId)]=z;else db.customers.unshift(z);
+save();closeModal();toast("تم حفظ الزبون");
+};
+}
+
+/* RENDER SALES */
+function renderSales(){
+const q=(document.getElementById("salesSearch")?.value||"").toLowerCase();
+const list=db.sales.filter(x=>!q||x.name.toLowerCase().includes(q)||(x.customer||"").toLowerCase().includes(q));
+if(!list.length){salesTable.innerHTML=`<div class="empty"><div>💰</div>لا توجد مبيعات.</div>`;return}
+salesTable.innerHTML=`<div class="tableWrap"><table><thead><tr><th>المنتج</th><th>الزبون</th><th>المبلغ</th><th>الدفع</th><th>التاريخ</th><th>إجراء</th></tr></thead><tbody>${list.map(x=>`
+<tr><td><b>${esc(x.name)}</b></td><td>${esc(x.customer||"عميل")}</td><td><b>${money(x.amount)}</b></td><td><span class="badge purple">${esc(x.payment)}</span></td><td>${fmt(x.date)}</td><td><button class="btn blue sm" onclick="openSale('${x.id}')">تعديل</button> <button class="btn red sm" onclick="deleteItem('sales','${x.id}')">حذف</button></td></tr>`).join("")}</tbody></table></div>`;
+}
+
+/* RENDER EXPENSES */
+function renderExpenses(){
+const q=(document.getElementById("expenseSearch")?.value||"").toLowerCase();
+const list=db.expenses.filter(x=>!q||x.name.toLowerCase().includes(q)||x.category.toLowerCase().includes(q));
+if(!list.length){expenseTable.innerHTML=`<div class="empty"><div>💸</div>لا توجد مصاريف.</div>`;return}
+expenseTable.innerHTML=`<div class="tableWrap"><table><thead><tr><th>الوصف</th><th>التصنيف</th><th>المبلغ</th><th>التاريخ</th><th>إجراء</th></tr></thead><tbody>${list.map(x=>`
+<tr><td><b>${esc(x.name)}</b></td><td><span class="badge purple">${esc(x.category)}</span></td><td><b>${money(x.amount)}</b></td><td>${fmt(x.date)}</td><td><button class="btn blue sm" onclick="openExpense('${x.id}')">تعديل</button> <button class="btn red sm" onclick="deleteItem('expenses','${x.id}')">حذف</button></td></tr>`).join("")}</tbody></table></div>`;
+}
+
+/* RENDER DEBTS */
+function renderDebts(){
+if(!db.debts.length){debtTable.innerHTML=`<div class="empty"><div>⏳</div>لا توجد ديون.</div>`;return}
+debtTable.innerHTML=`<div class="tableWrap"><table><thead><tr><th>الزبون</th><th>المبلغ</th><th>الاستحقاق</th><th>الحالة</th><th>إجراء</th></tr></thead><tbody>${db.debts.map(x=>{
+const late=x.date&&x.date<date();
+return `<tr><td><b>${esc(x.customer)}</b></td><td><b>${money(x.amount)}</b></td><td>${fmt(x.date)}</td><td><span class="badge ${late?"badgeRed":"badgeYellow"}">${late?"متأخر":"مستحق"}</span></td><td><button class="btn green sm" onclick="payDebt('${x.id}')">✓ تسديد</button> <button class="btn blue sm" onclick="openDebt('${x.id}')">تعديل</button> <button class="btn red sm" onclick="deleteItem('debts','${x.id}')">حذف</button></td></tr>`
+}).join("")}</tbody></table></div>`;
+}
+
+/* RENDER STOCK */
+function renderStock(){
+const q=(document.getElementById("stockSearch")?.value||"").toLowerCase();
+const list=db.stock.filter(x=>!q||x.name.toLowerCase().includes(q));
+if(!list.length){stockTable.innerHTML=`<div class="empty"><div>📦</div>لا توجد منتجات.</div>`;return}
+stockTable.innerHTML=`<div class="tableWrap"><table><thead><tr><th>المنتج</th><th>الكمية</th><th>السعر</th><th>القيمة</th><th>الحالة</th><th>إجراء</th></tr></thead><tbody>${list.map(x=>{
+const low=n(x.qty)<=n(x.min);
+return `<tr><td><b>${esc(x.name)}</b></td><td>${x.qty}</td><td>${money(x.price)}</td><td>${money(x.qty*x.price)}</td><td><span class="badge ${low?"badgeRed":"badgeGreen"}">${low?"مخزون منخفض":"جيد"}</span></td><td><button class="btn blue sm" onclick="openStock('${x.id}')">تعديل</button> <button class="btn red sm" onclick="deleteItem('stock','${x.id}')">حذف</button></td></tr>`
+}).join("")}</tbody></table></div>`;
+}
+
+/* RENDER CUSTOMERS */
+function renderCustomers(){
+const q=(document.getElementById("customerSearch")?.value||"").toLowerCase();
+const list=db.customers.filter(x=>!q||x.name.toLowerCase().includes(q)||(x.phone||"").includes(q));
+if(!list.length){customerTable.innerHTML=`<div class="empty"><div>👥</div>لا توجد بيانات زبائن.</div>`;return}
+customerTable.innerHTML=`<div class="tableWrap"><table><thead><tr><th>الاسم</th><th>الهاتف</th><th>المبيعات</th><th>الإجمالي</th><th>إجراء</th></tr></thead><tbody>${list.map(x=>{
+const s=db.sales.filter(a=>a.customer===x.name),total=s.reduce((a,b)=>a+n(b.amount),0);
+return `<tr><td><b>${esc(x.name)}</b></td><td>${esc(x.phone||"—")}</td><td>${s.length}</td><td>${money(total)}</td><td><button class="btn blue sm" onclick="openCustomer('${x.id}')">تعديل</button> <button class="btn red sm" onclick="deleteItem('customers','${x.id}')">حذف</button></td></tr>`
+}).join("")}</tbody></table></div>`;
+}
+
+/* DASHBOARD */
+function renderDashboard(){
+const ts=db.sales.filter(x=>x.date===date()),te=db.expenses.filter(x=>x.date===date());
+const tsum=ts.reduce((a,b)=>a+n(b.amount),0),tesum=te.reduce((a,b)=>a+n(b.amount),0);
+const sales=db.sales.reduce((a,b)=>a+n(b.amount),0),exp=db.expenses.reduce((a,b)=>a+n(b.amount),0),debt=db.debts.reduce((a,b)=>a+n(b.amount),0);
+todaySales.textContent=money(tsum);todayExp.textContent=money(tesum);netProfit.textContent=money(sales-exp);totalDebt.textContent=money(debt);
+todaySalesCount.textContent=ts.length+" عملية";todayExpCount.textContent=te.length+" عملية";debtCount.textContent=db.debts.length+" دين";
+stockCount.textContent=db.stock.length;customerCount.textContent=db.customers.length;salesCount.textContent=db.sales.length;
+
+const all=[...db.sales.map(x=>({...x,type:"بيع",icon:"💰"})),...db.expenses.map(x=>({...x,type:"مصروف",icon:"💸"}))].sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,7);
+recent.innerHTML=all.length?`<div class="activity">${all.map(x=>`<div class="activityItem"><div class="activityLeft"><div class="activityIcon">${x.icon}</div><div><div class="activityName">${esc(x.name)}</div><div class="activityDate">${x.type} • ${fmt(x.date)}</div></div></div><b>${money(x.amount)}</b></div>`).join("")}</div>`:`<div class="empty"><div>📋</div>لا توجد عمليات بعد.</div>`;
+
+const low=db.stock.filter(x=>n(x.qty)<=n(x.min));
+stockAlert.innerHTML=low.length?`<div class="activity">${low.slice(0,5).map(x=>`<div class="activityItem"><div class="activityLeft"><div class="activityIcon">⚠️</div><div><div class="activityName">${esc(x.name)}</div><div class="activityDate">الكمية الحالية: ${x.qty}</div></div></div><span class="badge badgeRed">منخفض</span></div>`).join("")}</div>`:`<div class="empty"><div>✓</div>المخزون في حالة جيدة.</div>`;
+}
+
+/* REPORTS */
+function renderReports(){
+const sales=db.sales.reduce((a,b)=>a+n(b.amount),0),exp=db.expenses.reduce((a,b)=>a+n(b.amount),0),profit=sales-exp,debt=db.debts.reduce((a,b)=>a+n(b.amount),0),stock=db.stock.reduce((a,b)=>a+n(b.qty)*n(b.price),0),max=Math.max(sales,exp,1);
+reportsGrid.innerHTML=`
+<div class="reportBox"><div class="label">إجمالي المبيعات</div><strong>${money(sales)}</strong><div class="progress"><span style="width:100%"></span></div></div>
+<div class="reportBox"><div class="label">إجمالي المصاريف</div><strong>${money(exp)}</strong><div class="progress"><span style="width:${Math.min(100,exp/max*100)}%"></span></div></div>
+<div class="reportBox"><div class="label">الربح الصافي</div><strong style="color:${profit<0?"var(--red)":"var(--green)"}">${money(profit)}</strong><div class="sub">المبيعات − المصاريف</div></div>
+<div class="reportBox"><div class="label">الديون المستحقة</div><strong>${money(debt)}</strong><div class="sub">${db.debts.length} دين</div></div>
+<div class="reportBox"><div class="label">قيمة المخزون</div><strong>${money(stock)}</strong><div class="sub">${db.stock.length} منتج</div></div>
+<div class="reportBox"><div class="label">عدد الزبائن</div><strong>${db.customers.length}</strong><div class="sub">زبون مسجل</div></div>`;
+}
+
+/* INVOICE */
+function invoice(){
+if(!db.sales.length)return toast("سجل بيعاً أولاً");
+const x=db.sales[0];
+modal("فاتورة البيع",`
+<div class="invoice">
+<div class="invoiceHead"><div><div class="invoiceBrand">${esc(db.settings.name)}</div><small>فاتورة بيع</small></div><div><small>${fmt(x.date)}</small></div></div>
+<div class="invoiceRow"><span>الزبون</span><b>${esc(x.customer||"عميل")}</b></div>
+<div class="invoiceRow"><span>المنتج / الخدمة</span><b>${esc(x.name)}</b></div>
+<div class="invoiceRow"><span>طريقة الدفع</span><b>${esc(x.payment)}</b></div>
+<div class="invoiceTotal"><span>الإجمالي</span><b>${money(x.amount)}</b></div>
+<div style="text-align:center;margin-top:18px;color:#777;font-size:10px">شكراً لثقتكم بنا.</div>
+</div>
+<div class="noPrint" style="margin-top:10px"><button class="btn primary" onclick="window.print()">🖨 طباعة / PDF</button></div>`);
+}
+
+/* DATA */
+function openData(){
+modal("إدارة البيانات والإعدادات",`
+<div class="setting"><div><b>تصدير البيانات</b><small>حفظ جميع بيانات المشروع في ملف JSON.</small></div><button class="btn primary" onclick="exportData()">⬇ تصدير</button></div>
+<div class="setting"><div><b>استيراد البيانات</b><small>استعادة ملف بيانات محفوظ سابقاً.</small></div><label class="btn green">⬆ استيراد<input type="file" accept=".json" hidden onchange="importData(event)"></label></div>
+<div class="setting"><div><b>معلومات المشروع</b><small>غيّر الاسم الظاهر في الواجهة والفواتير.</small></div><button class="btn blue" onclick="projectSettings()">⚙ تعديل</button></div>
+<div class="setting"><div><b>طباعة التقارير</b><small>طباعة أو حفظ التقرير بصيغة PDF.</small></div><button class="btn light" onclick="closeModal();tab('reports');setTimeout(()=>window.print(),200)">🖨 طباعة</button></div>
+<div class="setting"><div><b>حذف كل البيانات</b><small>احذف بيانات هذا المتصفح نهائياً.</small></div><button class="btn red" onclick="resetData()">حذف الكل</button></div>`);
+}
+
+function projectSettings(){
+modal("إعدادات المشروع",`
+<form id="settingsForm">
+<div class="field"><label>اسم المشروع</label><input id="setName" value="${esc(db.settings.name)}" required></div>
+<div class="field"><label>العملة</label><input id="setCurrency" value="${esc(db.settings.currency)}"></div>
+<div class="field full"><label>الوصف المختصر</label><input id="setSub" value="${esc(db.settings.subtitle)}"></div>
+<div class="formActions"><button class="btn primary">💾 حفظ</button></div>
+</form>`);
+settingsForm.onsubmit=e=>{
+e.preventDefault();
+db.settings.name=setName.value.trim()||"مشروعي";db.settings.currency=setCurrency.value.trim()||"دج";db.settings.subtitle=setSub.value.trim();
+save();closeModal();toast("تم تحديث معلومات المشروع");
+};
+}
+
+function exportData(){
+const payload={product:"Business Manager",version:1,exportedAt:new Date().toISOString(),data:db};
+const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="بيانات-المشروع.json";a.click();URL.revokeObjectURL(a.href);toast("تم تصدير البيانات");
+}
+
+function importData(e){
+const file=e.target.files[0];if(!file)return;
+const r=new FileReader();
+r.onload=()=>{
+try{
+const p=JSON.parse(r.result),x=p.data||p;
+if(!x||!Array.isArray(x.sales)||!Array.isArray(x.expenses)||!Array.isArray(x.debts)||!Array.isArray(x.stock)||!Array.isArray(x.customers))throw 1;
+db={...structuredClone(DEFAULT),...x,settings:{...DEFAULT.settings,...(x.settings||{})}};
+save();closeModal();toast("تم استيراد البيانات بنجاح");
+}catch(err){toast("ملف البيانات غير صالح")}
+};
+r.readAsText(file);
+}
+
+function resetData(){
+if(!confirm("سيتم حذف جميع البيانات. هل أنت متأكد؟"))return;
+if(!confirm("تأكيد أخير؟"))return;
+db=structuredClone(DEFAULT);save();closeModal();toast("تم حذف البيانات");
+}
+
+/* UPDATE */
+function renderAll(){
+document.getElementById("brandName").textContent=db.settings.name;
+document.getElementById("brandSub").textContent=db.settings.subtitle;
+renderDashboard();renderSales();renderExpenses();renderDebts();renderStock();renderCustomers();renderReports();
+}
+
+renderAll();
+</script>
+
+</body>
+</html>

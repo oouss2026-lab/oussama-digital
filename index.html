@@ -1261,7 +1261,7 @@ function choosePlan(plan, price) {
 function closeSubscription() {
   document.getElementById("subscriptionModal").classList.remove("show");
 }
-
+  
 function sendSubscription() {
   const name = document.getElementById("customerName").value.trim();
   const restaurant = document.getElementById("restaurantName").value.trim();
@@ -1269,11 +1269,28 @@ function sendSubscription() {
   const plan = document.getElementById("selectedPlan").value;
   const price = document.getElementById("selectedPrice").value;
 
-  if (!name || !restaurant || !customerPhone) {
-    alert("من فضلك عمر جميع المعلومات.");
+  if (name === "" || restaurant === "" || customerPhone === "") {
+    alert("⚠️ من فضلك أكمل جميع المعلومات المطلوبة.");
     return;
   }
 
+  const message =
+    "🍕 طلب اشتراك جديد - أسامة ديجيتال\n\n" +
+    "👤 الاسم: " + name + "\n" +
+    "🏪 المطعم: " + restaurant + "\n" +
+    "📱 الهاتف: " + customerPhone + "\n\n" +
+    "📦 الباقة: " + plan + "\n" +
+    "💰 السعر: " + price + " دج / شهر\n\n" +
+    "أريد الاشتراك وتفعيل الحساب.";
+
+  const whatsapp =
+    "https://wa.me/213658644142?text=" +
+    encodeURIComponent(message);
+
+  window.open(whatsapp, "_blank");
+
+  closeSubscription();
+}
   const message =
     "🍕 طلب اشتراك جديد - أسامة ديجيتال\n\n" +
     "👤 الاسم: " + name + "\n" +

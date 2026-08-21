@@ -1241,11 +1241,11 @@ button:active{transform:scale(.98)}
 
 
 <script>
-function choosePlan(plan, price) {
-  var modal = document.getElementById("subscriptionModal");
+  function choosePlan(plan, price) {
+  const modal = document.getElementById("subscriptionModal");
 
   if (!modal) {
-    alert("خطأ: نافذة الاشتراك غير موجودة.");
+    alert("حدث خطأ في نافذة الاشتراك.");
     return;
   }
 
@@ -1254,26 +1254,70 @@ function choosePlan(plan, price) {
   document.getElementById("planName").textContent = plan;
   document.getElementById("planPrice").textContent = price + " دج / شهر";
 
-  modal.style.display = "flex";
   modal.classList.add("show");
 }
 
 function closeSubscription() {
-  document.getElementById("subscriptionModal").classList.remove("show");
-}
-  
-function sendSubscription() {
-  const name = document.getElementById("customerName").value.trim();
-  const restaurant = document.getElementById("restaurantName").value.trim();
-  const customerPhone = document.getElementById("customerPhone").value.trim();
-  const plan = document.getElementById("selectedPlan").value;
-  const price = document.getElementById("selectedPrice").value;
+  const modal = document.getElementById("subscriptionModal");
 
-  if (name === "" || restaurant === "" || customerPhone === "") {
-    alert("⚠️ من فضلك أكمل جميع المعلومات المطلوبة.");
+  if (modal) {
+    modal.classList.remove("show");
+  }
+}
+
+function sendSubscription() {
+  const nameInput = document.getElementById("customerName");
+  const restaurantInput = document.getElementById("restaurantName");
+  const phoneInput = document.getElementById("customerPhone");
+  const planInput = document.getElementById("selectedPlan");
+  const priceInput = document.getElementById("selectedPrice");
+
+  const name = nameInput.value.trim();
+  const restaurant = restaurantInput.value.trim();
+  const phone = phoneInput.value.trim();
+  const plan = planInput.value.trim();
+  const price = priceInput.value.trim();
+
+  if (!name) {
+    nameInput.focus();
+    alert("⚠️ اكتب اسمك الكامل.");
     return;
   }
 
+  if (!restaurant) {
+    restaurantInput.focus();
+    alert("⚠️ اكتب اسم المطعم أو البيتزيريا.");
+    return;
+  }
+
+  if (!phone) {
+    phoneInput.focus();
+    alert("⚠️ اكتب رقم الهاتف.");
+    return;
+  }
+
+  if (!plan || !price) {
+    alert("⚠️ لم يتم تحديد الباقة.");
+    return;
+  }
+
+  const message =
+    "🍕 *طلب اشتراك - أسامة ديجيتال*\n\n" +
+    "👤 الاسم: " + name + "\n" +
+    "🏪 المطعم: " + restaurant + "\n" +
+    "📱 الهاتف: " + phone + "\n\n" +
+    "📦 الباقة: " + plan + "\n" +
+    "💰 السعر: " + price + " دج / شهر\n\n" +
+    "أريد الاشتراك وتفعيل الحساب.";
+
+  const whatsappUrl =
+    "https://wa.me/213658644142?text=" +
+    encodeURIComponent(message);
+
+  window.open(whatsappUrl, "_blank");
+
+  closeSubscription();
+}
   const message =
     "🍕 طلب اشتراك جديد - أسامة ديجيتال\n\n" +
     "👤 الاسم: " + name + "\n" +

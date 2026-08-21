@@ -1128,9 +1128,11 @@ button:active{transform:scale(.98)}
         <li>✓ يعمل من الهاتف</li>
       </ul>
 
-      <button class="primary price-button">
-        اختر Basic
-      </button>
+<button
+  class="primary price-button"
+  onclick="choosePlan('Basic','1500')">
+  اختر Basic
+</button>
 
     </div>
 
@@ -1160,9 +1162,11 @@ button:active{transform:scale(.98)}
         <li>✓ إحصائيات الأرباح</li>
       </ul>
 
-      <button class="primary orange price-button">
-        اختر Pro
-      </button>
+<button
+  class="primary orange price-button"
+  onclick="choosePlan('Pro','2500')">
+  اختر Pro
+</button>
 
     </div>
 
@@ -1190,9 +1194,11 @@ button:active{transform:scale(.98)}
         <li>✓ تطويرات مستقبلية</li>
       </ul>
 
-      <button class="primary price-button">
-        اختر Premium
-      </button>
+<button
+  class="primary price-button"
+  onclick="choosePlan('Premium','4000')">
+  اختر Premium
+</button>
 
     </div>
 
@@ -1235,7 +1241,20 @@ button:active{transform:scale(.98)}
 
 
 <script>
+function choosePlan(plan, price) {
 
+  const message =
+    "السلام عليكم، أريد الاشتراك في أسامة ديجيتال 🍕\n\n" +
+    "الباقة: " + plan + "\n" +
+    "السعر: " + price + " دج / شهر\n\n" +
+    "أريد معرفة طريقة الدفع وتفعيل الحساب.";
+
+  const whatsapp =
+    "https://wa.me/?text=" +
+    encodeURIComponent(message);
+
+  window.open(whatsapp, "_blank");
+}
 const state={
   sales:JSON.parse(localStorage.getItem("ouss_sales")||"[]"),
   products:JSON.parse(localStorage.getItem("ouss_products")||"[]"),

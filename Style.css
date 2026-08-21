@@ -48,3 +48,139 @@ form{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.field{display:fl
 @media(max-width:950px){.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.reportGrid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){main{padding:13px 9px 35px}.hero{padding:21px}.hero h1{font-size:22px}.stats{gap:7px}.stat{padding:11px}.statIcon{width:37px;height:37px}.value{font-size:15px}.grid3,.reportGrid{grid-template-columns:1fr}.card{padding:14px}form{grid-template-columns:1fr}.field.full,.formActions{grid-column:auto}.brand b{font-size:14px}}
 @media print{header,.hero,.stats,.navBox,.toolbar,.search,.noPrint,.toast{display:none!important}main{padding:0}.panel{display:block!important}.card{box-shadow:none;border:0;padding:0}}
+/* ==========================================
+   أسامة ديجيتال - Subscription
+   ========================================== */
+
+.subscriptionBox{
+  max-width:520px;
+  direction:rtl;
+}
+
+.subscriptionBox .modalHead{
+  text-align:right;
+}
+
+.subscriptionBox .modalHead h2{
+  margin:0;
+  font-size:18px;
+}
+
+.subscriptionPlan{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:4px 0 18px;
+  padding:14px 15px;
+  border:1px solid #ded9ff;
+  border-radius:13px;
+  background:#f4f2ff;
+}
+
+.subscriptionLabel{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-bottom:4px;
+}
+
+.subscriptionPlan strong{
+  display:block;
+  color:var(--primary);
+  font-size:17px;
+}
+
+.subscriptionPrice{
+  color:var(--dark);
+  font-size:12px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.subscriptionBox form{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:11px;
+}
+
+.subscriptionBox .field{
+  min-width:0;
+}
+
+.subscriptionBox .field.full{
+  grid-column:1/-1;
+}
+
+.subscriptionBox label{
+  display:block;
+  margin-bottom:5px;
+}
+
+.subscriptionBox input:not([type="hidden"]){
+  height:44px;
+  font-size:11px;
+}
+
+.subscriptionBox input:not([type="hidden"])::placeholder{
+  color:#a0a6b2;
+}
+
+.subscriptionBox input:not([type="hidden"]):focus{
+  border-color:var(--primary);
+}
+
+.subscriptionBox .formActions{
+  grid-column:1/-1;
+  display:grid;
+  grid-template-columns:1fr 110px;
+  gap:8px;
+  margin-top:3px;
+}
+
+.subscriptionSubmit{
+  min-height:42px;
+}
+
+.subscriptionBox .formActions .light{
+  min-height:42px;
+}
+
+.subscriptionNote{
+  margin-top:13px;
+  padding-top:11px;
+  border-top:1px solid var(--line);
+  text-align:center;
+  color:var(--muted);
+  font-size:8px;
+}
+
+@media(max-width:600px){
+
+  .subscriptionBox{
+    max-width:100%;
+    padding:16px;
+  }
+
+  .subscriptionBox form{
+    grid-template-columns:1fr;
+  }
+
+  .subscriptionBox .field.full{
+    grid-column:auto;
+  }
+
+  .subscriptionBox .formActions{
+    grid-column:auto;
+    grid-template-columns:1fr;
+  }
+
+  .subscriptionPlan{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .subscriptionPrice{
+    white-space:normal;
+  }
+}

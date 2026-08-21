@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#17142b">
+<title>أسامة ديجيتال</title>
+
+<style>
+:root{
+  --bg:#f5f6fa;
+  --card:#ffffff;
+  --ink:#171c26;
+  --muted:#70798a;
+  --line:#e5e8ef;
+  --primary:#5b4bdb;
+  --primary2:#7869ed;
+  --dark:#17142b;
+  --dark2:#25203d;
+  --ok:#13845c;
+  --okbg:#e9f8f1;
+  --bad:#c53d32;
+  --warn:#a66b00;
+  --shadow:0 10px 30px rgba(22,28,45,.07);
+  --radius:17px;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Tajawal,Arial,Tahoma,sans-serif;
+  line-height:1.7;
+}
+
+button,input,textarea,select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+button:active{
+  transform:scale(.98);
+}
+
+.topbar{
+  position:fixed;
+  top:0;
+  right:0;
+  left:0;
+  height:72px;
+  background:var(--dark);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 25px;
+  z-index:1000;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo{
+  width:44px;
+  height:44px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  font-size:22px;
+  font-weight:900;
+  box-shadow:0 6px 20px rgba(91,75,219,.3);
+}
+
+.brand h1{
+  margin:0;
+  font-size:18px;
+}
+
+.brand span{
+  display:block;
+  color:#bcb8ce;
+  font-size:11px;
+}
+
+.menu-btn{
+  display:none;
+  border:0;
+  background:none;
+  color:#fff;
+  font-size:28px;
+}
+
+.sidebar{
+  position:fixed;
+  top:72px;
+  right:0;
+  bottom:0;
+  width:240px;
+  background:#211d39;
+  padding:20px 14px;
+  z-index:900;
+}
+
+.nav{
+  display:grid;
+  gap:6px;
+}
+
+.nav button{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:#d8d4e4;
+  text-align:right;
+  padding:13px 15px;
+  border-radius:12px;
+  transition:.2s;
+}
+
+.nav button:hover,
+.nav button.active{
+  background:#352f56;
+  color:#fff;
+}
+
+.main{
+  margin-right:240px;
+  padding:100px 28px 45px;
+  max-width:1500px;
+}
+
+.page{
+  display:none;
+  animation:fade .25s ease;
+}
+
+.page.active{
+  display:block;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(5px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.hero{
+  background:linear-gradient(135deg,#201b3b,#3c3170);
+  color:#fff;
+  border-radius:24px;
+  padding:34px;
+  margin-bottom:22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+  overflow:hidden;
+  position:relative;
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  background:rgba(120,105,237,.14);
+  left:-70px;
+  top:-100px;
+}
+
+.hero-content{
+  position:relative;
+  z-index:1;
+}
+
+.eyebrow{
+  color:var(--primary);
+  font-size:12px;
+  font-weight:800;
+  margin:0;
+}
+
+.hero .eyebrow{
+  color:#c8c1ff;
+}
+
+.hero h2{
+  font-size:31px;
+  margin:3px 0;
+}
+
+.hero p{
+  margin:5px 0;
+  color:#dedbea;
+}
+
+.primary{
+  border:0;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  color:#fff;
+  padding:11px 18px;
+  border-radius:12px;
+  font-weight:800;
+  box-shadow:0 7px 20px rgba(91,75,219,.22);
+  transition:.2s;
+  position:relative;
+  z-index:2;
+}
+
+.primary:hover{
+  filter:brightness(1.08);
+  transform:translateY(-1px);
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-bottom:22px;
+}
+
+.stat{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.stat strong{
+  display:block;
+  font-size:30px;
+  line-height:1.2;
+  margin-top:5px;
+}
+
+.panel{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:22px;
+  box-shadow:var(--shadow);
+  margin-bottom:20px;
+}
+
+.panel-head,
+.page-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.page-head h2{
+  margin:2px 0;
+  font-size:30px;
+}
+
+.link-btn{
+  border:0;
+  background:none;
+  color:var(--primary);
+  font-weight:800;
+}
+
+.toolbar{
+  display:flex;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.search{
+  width:100%;
+  border:1px solid var(--line);
+  background:var(--card);
+  color:var(--ink);
+  padding:13px 15px;
+  border-radius:12px;
+  outline:none;
+}
+
+.search:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(91,75,219,.1);
+}
+
+.cards{
+  display:grid;
+  gap:13px;
+}
+
+.item{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:var(--shadow);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+
+.item h3{
+  margin:0 0 4px;
+  font-size:17px;
+}
+
+.item p{
+  color:var(--muted);
+  margin:0 0 8px;
+}
+
+.actions{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+.action{
+  border:1px solid var(--line);
+  background:var(--card);
+  color:var(--ink);
+  padding:7px 12px;
+  border-radius:9px;
+}
+
+.action:hover{
+  background:#f1effd;
+}
+
+.action.danger{
+  color:var(--bad);
+}
+
+.badge{
+  display:inline-block;
+  background:var(--okbg);
+  color:var(--ok);
+  padding:3px 9px;
+  border-radius:50px;
+  font-size:11px;
+  margin-left:4px;
+}
+
+.badge.gray{
+  background:#eef0f4;
+  color:#687184;
+}
+
+.empty{
+  text-align:center;
+  padding:38px 20px;
+  color:var(--muted);
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(10,8,20,.65);
+  z-index:3000;
+  place-items:center;
+  padding:18px;
+}
+
+.modal.show{
+  display:grid;
+}
+
+.modal-box{
+  width:min(550px,100%);
+  background:var(--card);
+  border-radius:21px;
+  padding:26px;
+  position:relative;
+  box-shadow:0 30px 80px rgba(0,0,0,.3);
+}
+
+.modal-box h3{
+  margin:0 0 20px;
+}
+
+.close{
+  position:absolute;
+  left:15px;
+  top:10px;
+  border:0;
+  background:none;
+  color:var(--muted);
+  font-size:29px;
+}
+
+.form{
+  display:grid;
+  gap:15px;
+}
+
+.form label{
+  display:grid;
+  gap:7px;
+  font-weight:700;
+}
+
+.form input,
+.form textarea,
+.form select{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:11px;
+  background:var(--card);
+  color:var(--ink);
+  outline:none;
+}
+
+.form textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.form input:focus,
+.form textarea:focus,
+.form select:focus{
+  border-color:var(--primary);
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:24px;
+  transform:translate(-50%,25px);
+  background:#17142b;
+  color:#fff;
+  padding:11px 19px;
+  border-radius:12px;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:4000;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+.settings{
+  max-width:650px;
+}
+
+@media(max-width:850px){
+
+  .menu-btn{
+    display:block;
+  }
+
+  .sidebar{
+    transform:translateX(100%);
+    transition:.25s;
+    width:255px;
+  }
+
+  .sidebar.open{
+    transform:translateX(0);
+  }
+
+  .main{
+    margin-right:0;
+    padding:92px 15px 30px;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero{
+    display:block;
+    padding:25px;
+  }
+
+  .hero .primary{
+    margin-top:18px;
+  }
+
+  .item{
+    display:block;
+  }
+
+  .actions{
+    margin-top:13px;
+  }
+}
+
+@media(max-width:480px){
+
+  .topbar{
+    padding:0 14px;
+  }
+
+  .brand h1{
+    font-size:16px;
+  }
+
+  .stats{
+    gap:9px;
+  }
+
+  .stat{
+    padding:14px;
+  }
+
+  .stat strong{
+    font-size:23px;
+  }
+
+  .hero h2{
+    font-size:26px;
+  }
+
+  .page-head h2{
+    font-size:25px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+  <div class="brand">
+
+    <div class="logo">أ</div>
+
+    <div>
+      <h1>أسامة ديجيتال</h1>
+      <span>منصة إدارة المشروع</span>
+    </div>
+
+  </div>
+
+  <button class="menu-btn" id="menuBtn">☰</button>
+
+</header>
+
+
+<aside class="sidebar" id="sidebar">
+
+  <nav class="nav">
+
+    <button class="active" data-page="dashboard">
+      🏠 الرئيسية
+    </button>
+
+    <button data-page="cases">
+      📁 القضايا
+    </button>
+
+    <button data-page="lawyers">
+      ⚖️ المحامون
+    </button>
+
+    <button data-page="archive">
+      🗄️ الأرشيف
+    </button>
+
+    <button data-page="documents">
+      📄 الوثائق
+    </button>
+
+    <button data-page="settings">
+      ⚙️ الإعدادات
+    </button>
+
+  </nav>
+
+</aside>
+
+
+<main class="main">
+
+
+<section class="page active" id="dashboard">
+
+  <div class="hero">
+
+    <div class="hero-content">
+
+      <p class="eyebrow">مرحباً بك</p>
+
+      <h2>لوحة التحكم</h2>
+
+      <p>
+        إدارة القضايا والوثائق والمحامين من مكان واحد.
+      </p>
+
+    </div>
+
+    <button class="primary" data-action="new-case">
+      + قضية جديدة
+    </button>
+
+  </div>
+
+
+  <div class="stats">
+
+    <div class="stat">
+      <span>القضايا</span>
+      <strong id="caseCount">0</strong>
+    </div>
+
+    <div class="stat">
+      <span>المحامون</span>
+      <strong id="lawyerCount">0</strong>
+    </div>
+
+    <div class="stat">
+      <span>الوثائق</span>
+      <strong id="documentCount">0</strong>
+    </div>
+
+    <div class="stat">
+      <span>قيد المتابعة</span>
+      <strong id="taskCount">0</strong>
+    </div>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="panel-head">
+
+      <h3>آخر القضايا</h3>
+
+      <button class="link-btn" data-page-link="cases">
+        عرض الكل
+      </button>
+
+    </div>
+
+    <div id="recentCases" class="empty">
+      لا توجد قضايا بعد.
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="page" id="cases">
+
+  <div class="page-head">
+
+    <div>
+      <p class="eyebrow">إدارة الملفات</p>
+      <h2>القضايا</h2>
+    </div>
+
+    <button class="primary" data-action="new-case">
+      + إضافة قضية
+    </button>
+
+  </div>
+
+  <div class="toolbar">
+
+    <input
+      class="search"
+      id="caseSearch"
+      type="search"
+      placeholder="ابحث عن قضية..."
+    >
+
+  </div>
+
+  <div id="casesList" class="cards"></div>
+
+</section>
+
+
+<section class="page" id="lawyers">
+
+  <div class="page-head">
+
+    <div>
+      <p class="eyebrow">الفريق</p>
+      <h2>المحامون</h2>
+    </div>
+
+    <button class="primary" data-action="new-lawyer">
+      + إضافة محامٍ
+    </button>
+
+  </div>
+
+  <div id="lawyersList" class="cards"></div>
+
+</section>
+
+
+<section class="page" id="archive">
+
+  <div class="page-head">
+
+    <div>
+      <p class="eyebrow">المحفوظات</p>
+      <h2>الأرشيف</h2>
+    </div>
+
+  </div>
+
+  <div class="panel">
+
+    <div id="archiveList" class="cards"></div>
+
+  </div>
+
+</section>
+
+
+<section class="page" id="documents">
+
+  <div class="page-head">
+
+    <div>
+      <p class="eyebrow">الملفات</p>
+      <h2>الوثائق</h2>
+    </div>
+
+    <button class="primary" data-action="new-document">
+      + إضافة وثيقة
+    </button>
+
+  </div>
+
+  <div class="panel">
+
+    <div id="documentsList" class="cards"></div>
+
+  </div>
+
+</section>
+
+
+<section class="page" id="settings">
+
+  <div class="page-head">
+
+    <div>
+      <p class="eyebrow">النظام</p>
+      <h2>الإعدادات</h2>
+    </div>
+
+  </div>
+
+  <div class="panel settings">
+
+    <form id="settingsForm" class="form">
+
+      <label>
+        اسم المنصة
+
+        <input
+          id="siteName"
+          value="أسامة ديجيتال"
+        >
+
+      </label>
+
+      <button class="primary" type="submit">
+        حفظ الإعدادات
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<div class="modal" id="modal">
+
+  <div class="modal-box">
+
+    <button class="close" id="closeModal">
+      ×
+    </button>
+
+    <h3 id="modalTitle">إضافة</h3>
+
+    <form id="modalForm" class="form"></form>
+
+  </div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+const state = {
+
+  cases: JSON.parse(
+    localStorage.getItem("ouss_cases") || "[]"
+  ),
+
+  lawyers: JSON.parse(
+    localStorage.getItem("ouss_lawyers") || "[]"
+  ),
+
+  documents: JSON.parse(
+    localStorage.getItem("ouss_documents") || "[]"
+  )
+
+};
+
+
+const $ = selector =>
+  document.querySelector(selector);
+
+
+const $$ = selector =>
+  [...document.querySelectorAll(selector)];
+
+
+function saveData(){
+
+  localStorage.setItem(
+    "ouss_cases",
+    JSON.stringify(state.cases)
+  );
+
+  localStorage.setItem(
+    "ouss_lawyers",
+    JSON.stringify(state.lawyers)
+  );
+
+  localStorage.setItem(
+    "ouss_documents",
+    JSON.stringify(state.documents)
+  );
+
+}
+
+
+function escapeHTML(value){
+
+  return String(value || "").replace(
+    /[&<>"']/g,
+    char => ({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    })[char]
+  );
+
+}
+
+
+function toast(message){
+
+  const box = $("#toast");
+
+  box.textContent = message;
+
+  box.classList.add("show");
+
+  setTimeout(
+    () => box.classList.remove("show"),
+    2200
+  );
+
+}
+
+
+function showPage(id){
+
+  $$(".page").forEach(page => {
+
+    page.classList.toggle(
+      "active",
+      page.id === id
+    );
+
+  });
+
+
+  $$(".nav button").forEach(button => {
+
+    button.classList.toggle(
+      "active",
+      button.dataset.page === id
+    );
+
+  });
+
+
+  $("#sidebar").classList.remove("open");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+document.addEventListener("click",event => {
+
+  const pageButton =
+    event.target.closest("[data-page]");
+
+  if(pageButton){
+
+    showPage(
+      pageButton.dataset.page
+    );
+
+    return;
+  }
+
+
+  const pageLink =
+    event.target.closest("[data-page-link]");
+
+  if(pageLink){
+
+    showPage(
+      pageLink.dataset.pageLink
+    );
+
+    return;
+  }
+
+
+  const action =
+    event.target.closest("[data-action]");
+
+  if(action){
+
+    if(action.dataset.action === "new-case")
+      openModal("case");
+
+    if(action.dataset.action === "new-lawyer")
+      openModal("lawyer");
+
+    if(action.dataset.action === "new-document")
+      openModal("document");
+
+  }
+
+});
+
+
+function openModal(type){
+
+  const titles = {
+    case:"إضافة قضية جديدة",
+    lawyer:"إضافة محامٍ جديد",
+    document:"إضافة وثيقة جديدة"
+  };
+
+
+  let extra = "";
+
+
+  if(type === "case"){
+
+    extra = `
+
+      <label>
+
+        الحالة
+
+        <select name="status">
+
+          <option>قيد المتابعة</option>
+
+          <option>مكتملة</option>
+
+          <option>معلقة</option>
+
+        </select>
+
+      </label>
+
+    `;
+
+  }
+
+
+  $("#modalTitle").textContent =
+    titles[type];
+
+
+  $("#modalForm").innerHTML = `
+
+    <label>
+
+      الاسم
+
+      <input
+        name="name"
+        required
+        placeholder="أدخل الاسم..."
+      >
+
+    </label>
+
+
+    <label>
+
+      التفاصيل
+
+      <textarea
+        name="details"
+        placeholder="أدخل التفاصيل..."
+      ></textarea>
+
+    </label>
+
+
+    ${extra}
+
+
+    <button
+      class="primary"
+      type="submit"
+    >
+      حفظ
+    </button>
+
+  `;
+
+
+  $("#modalForm").dataset.type = type;
+
+  $("#modal").classList.add("show");
+
+}
+
+
+$("#modalForm").addEventListener(
+  "submit",
+  event => {
+
+    event.preventDefault();
+
+
+    const form =
+      new FormData(event.currentTarget);
+
+
+    const type =
+      event.currentTarget.dataset.type;
+
+
+    const item = {
+
+      id:Date.now().toString(),
+
+      name:form.get("name"),
+
+      details:
+        form.get("details") || "",
+
+      status:
+        form.get("status") || "",
+
+      archived:false,
+
+      createdAt:
+        Date.now()
+
+    };
+
+
+    if(type === "case")
+      state.cases.push(item);
+
+
+    if(type === "lawyer")
+      state.lawyers.push(item);
+
+
+    if(type === "document")
+      state.documents.push(item);
+
+
+    saveData();
+
+    render();
+
+    closeModal();
+
+    toast("تم الحفظ بنجاح");
+
+  }
+);
+
+
+function closeModal(){
+
+  $("#modal").classList.remove("show");
+
+}
+
+
+$("#closeModal").onclick =
+  closeModal;
+
+
+$("#modal").addEventListener(
+  "click",
+  event => {
+
+    if(event.target.id === "modal")
+      closeModal();
+
+  }
+);
+
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if(event.key === "Escape")
+      closeModal();
+
+  }
+);
+
+
+document.addEventListener(
+  "click",
+  event => {
+
+    const button =
+      event.target.closest("[data-act]");
+
+    if(!button) return;
+
+
+    const id =
+      button.dataset.id;
+
+
+    if(button.dataset.act === "archive"){
+
+      const item =
+        state.cases.find(
+          x => x.id === id
+        );
+
+
+      if(item){
+
+        item.archived =
+          !item.archived;
+
+        saveData();
+
+        render();
+
+        toast(
+          item.archived
+            ? "تمت الأرشفة"
+            : "تم إلغاء الأرشفة"
+        );
+
+      }
+
+      return;
+    }
+
+
+    if(button.dataset.act === "delete"){
+
+      const type =
+        button.dataset.type;
+
+
+      let list;
+
+
+      if(type === "case")
+        list = state.cases;
+
+      else if(type === "lawyer")
+        list = state.lawyers;
+
+      else
+        list = state.documents;
+
+
+      const index =
+        list.findIndex(
+          x => x.id === id
+        );
+
+
+      if(index !== -1){
+
+        if(
+          confirm(
+            "هل أنت متأكد من حذف هذا العنصر؟"
+          )
+        ){
+
+          list.splice(index,1);
+
+          saveData();
+
+          render();
+
+          toast("تم الحذف");
+
+        }
+
+      }
+
+    }
+
+  }
+);
+
+
+function createCard(item,type){
+
+  const status =
+    item.status
+      ? `<span class="badge">
+          ${escapeHTML(item.status)}
+        </span>`
+      : "";
+
+
+  const archive =
+    item.archived
+      ? `<span class="badge gray">
+          مؤرشفة
+        </span>`
+      : "";
+
+
+  const archiveButton =
+    type === "case"
+      ? `
+        <button
+          class="action"
+          data-act="archive"
+          data-id="${item.id}"
+        >
+          ${
+            item.archived
+              ? "إلغاء الأرشفة"
+              : "أرشفة"
+          }
+        </button>
+      `
+      : "";
+
+
+  return `
+
+    <article class="item">
+
+      <div>
+
+        <h3>
+          ${escapeHTML(item.name)}
+        </h3>
+
+        <p>
+          ${escapeHTML(item.details)}
+        </p>
+
+        ${status}
+
+        ${archive}
+
+      </div>
+
+
+      <div class="actions">
+
+        ${archiveButton}
+
+        <button
+          class="action danger"
+          data-act="delete"
+          data-type="${type}"
+          data-id="${item.id}"
+        >
+          حذف
+        </button>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+function render(){
+
+  const activeCases =
+    state.cases.filter(
+      x => !x.archived
+    );
+
+
+  $("#caseCount").textContent =
+    activeCases.length;
+
+
+  $("#lawyerCount").textContent =
+    state.lawyers.length;
+
+
+  $("#documentCount").textContent =
+    state.documents.length;
+
+
+  $("#taskCount").textContent =
+    activeCases.filter(
+      x => x.status === "قيد المتابعة"
+    ).length;
+
+
+  const query =
+    ($("#caseSearch").value || "")
+      .trim()
+      .toLowerCase();
+
+
+  const filtered =
+    activeCases.filter(item => {
+
+      const name =
+        String(item.name || "")
+          .toLowerCase();
+
+      const details =
+        String(item.details || "")
+          .toLowerCase();
+
+      return !query ||
+        name.includes(query) ||
+        details.includes(query);
+
+    });
+
+
+  $("#casesList").innerHTML =
+    filtered.length
+
+      ? filtered
+          .slice()
+          .reverse()
+          .map(
+            x => createCard(x,"case")
+          )
+          .join("")
+
+      : `<div class="empty">
+          لا توجد قضايا مطابقة.
+        </div>`;
+
+
+  const recent =
+    activeCases
+      .slice()
+      .reverse()
+      .slice(0,3);
+
+
+  $("#recentCases").innerHTML =
+    recent.length
+
+      ? recent
+          .map(
+            x => createCard(x,"case")
+          )
+          .join("")
+
+      : `<div class="empty">
+          لا توجد قضايا بعد.
+        </div>`;
+
+
+  const archived =
+    state.cases.filter(
+      x => x.archived
+    );
+
+
+  $("#archiveList").innerHTML =
+    archived.length
+
+      ? archived
+          .slice()
+          .reverse()
+          .map(
+            x => createCard(x,"case")
+          )
+          .join("")
+
+      : `<div class="empty">
+          الأرشيف فارغ.
+        </div>`;
+
+
+  $("#lawyersList").innerHTML =
+    state.lawyers.length
+
+      ? state.lawyers
+          .slice()
+          .reverse()
+          .map(
+            x => createCard(x,"lawyer")
+          )
+          .join("")
+
+      : `<div class="empty">
+          لا يوجد محامون بعد.
+        </div>`;
+
+
+  $("#documentsList").innerHTML =
+    state.documents.length
+
+      ? state.documents
+          .slice()
+          .reverse()
+          .map(
+            x => createCard(x,"document")
+          )
+          .join("")
+
+      : `<div class="empty">
+          لا توجد وثائق بعد.
+        </div>`;
+
+}
+
+
+$("#caseSearch").addEventListener(
+  "input",
+  render
+);
+
+
+$("#menuBtn").addEventListener(
+  "click",
+  () => {
+
+    $("#sidebar").classList.toggle(
+      "open"
+    );
+
+  }
+);
+
+
+$("#settingsForm").addEventListener(
+  "submit",
+  event => {
+
+    event.preventDefault();
+
+
+    const name =
+      $("#siteName").value.trim();
+
+
+    if(!name){
+
+      toast("أدخل اسم المنصة");
+
+      return;
+
+    }
+
+
+    localStorage.setItem(
+      "ouss_site_name",
+      name
+    );
+
+
+    document.title =
+      name;
+
+
+    toast("تم حفظ الإعدادات");
+
+  }
+);
+
+
+const savedName =
+  localStorage.getItem(
+    "ouss_site_name"
+  );
+
+
+if(savedName){
+
+  $("#siteName").value =
+    savedName;
+
+  document.title =
+    savedName;
+
+}
+
+
+render();
+
+</script>
+
+</body>
+  </html>
